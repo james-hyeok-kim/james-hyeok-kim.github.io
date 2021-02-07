@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title> Bingo
+        </title>
+    
+
+        <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+        <meta name="viewpoint" content="width=device-width, user-scalable=no, initial-scale:1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+
+
+    </head>
+    
+    
+    <body>
+    <style>    
+    body {padding : 0px;}
+    input.slice{position : absolute ; left:-2000%;}
+    input.slice + label {overflow : hidden; display : inline-flex; justify-content: center; align-items: center;
+        position : relative; width : 168px; height: 212px; left:11.5%; top : 28px; background : white; border-radius: 1px; transition : all 0.5s; border-color : #114636; border-width: 6px; border-style : solid; margin-right : -15px; margin-top : -6px; font-family: 'Gothic A1', sans-serif;
+        color : black; vertical-align: middle; }
+    input.slice:checked + label {background: #d2ded9;}
+
+    .img{
+        color :white;
+        font-size = 20px;
+        margin :0 auto;
+        position : absolute;
+        left : 17%;
+        top : 7%;
+        margin-left : -170px;
+        margin-top : -150px;
+        width:360px;
+    }
+    .bingo{
+        width : 1000px;
+        height : 50px;
+        text-align:center;
+        text-decoration:none;
+        font-size:28px;
+        color : #be4646;
+        padding : 7px 0px 0px 20px;
+        margin:5px;
+        display:inline-block;
+        border-radius:5 px;
+        transition : all 0.2s;
+        font-family: 'Gothic A1', sans-serif;
+        position :absolute;
+        left :-7.3%;
+        margin-left : -125px;
+        top : 19.25%;
+        margin-top : 0px;
+    }
+        .share{
+            width : 800px;
+            height : 50px;
+            display:inline-block;
+            left : 20%;
+            top : 80%;
+
+            margin:5px;
+            margin-left : 20%;
+            margin-top : 300px;
+        }
+    .dot_font{
+        font-size:50px;
+        width : 200px;
+        font-family: 'Gothic A1', sans-serif;
+    }
+     .dot{
+         width : 400px;
+         height : 100px;
+         line-height:40px;
+         text-align: center;
+         background-color:#fafafa;
+         color : black;
+         font-size = 300px;
+         margin :0 auto;
+         left : 115%;
+         margin-left : -125px;
+         top : 12.5%;
+         margin-top : 0px;
+         font-family: 'Gothic A1', sans-serif;
+         display : inline-flex;
+         justify-content: center; 
+         align-items: center;
+         border-color : #114636; 
+         border-width: 10px; 
+         border-style : solid;
+         position : absolute;
+         
+        }
+        
+    </style>
+
+        <div id="parent" class="img">
+                <img src ="second_page_2.jpg" alt ="Second_image" width="980" height ="2200">        
+             <div class="dot">
+                <span class="dot_font" id="notvalid"> </span>
+            </div>
+            <div id="child" class="bingo">
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice1">
+                <label for="slice1" lang="ko">달달하게<br>시작하며<br>깔끔하고<br>상쾌하게<br>끝나는 맛</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice2">
+                <label for="slice2">스타벅스<br>민트초코<br>프라푸치노<br>(커스텀)</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice3">
+                <label for="slice3">그래스호퍼<br>칵테일</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice4">
+                <label for="slice4">민트초코칩<br>젤라또</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice5">
+                <label for="slice5">민트초코가<br>세상을<br> 지배한다</label><br>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice6">
+                <label for="slice6">맨토스<br>민트초코</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice7">
+                <label for="slice7">민트초코의<br>매력을<br>모르는사람… 안됐다</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice8">
+                <label for="slice8">이디야<br>커피민트<br>초콜렛칩<br>플랫치노</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice9">
+                <label for="slice9">민트초코<br>우유</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice10">
+                <label for="slice10">랜디스<br>민트초코도넛</label><br>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice11">
+                <label for="slice11">민초쿠키</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice12">
+                <label for="slice12">배스킨라빈스민트초코</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice13">
+                <label for="slice13">치약이<br>민트맛이다</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice14">
+                <label for="slice14">민트초코<br>아몬드</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice15">
+                <label for="slice15">민초단은<br>박해받지<br>않을<br>권리를<br>가진다</label><br>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice16">
+                <label for="slice16">커피빈<br>모로칸<br>민트라떼</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice17">
+                <label for="slice17">m&m<br>민트초코맛</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice18">
+                <label for="slice18">m&m<br>민트초코맛</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice19">
+                <label for="slice19">오레오<br>민트</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice20">
+                <label for="slice20">안데스<br>민트초콜릿</label><br>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice21">
+                <label for="slice21">카카오+민트<br>조합은 16C 유럽에서<br>시작된 <br>근본있는 <br>조합이다.</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice22">
+                <label for="slice22">빽다방<br>민트초코<br>빽스치노</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice23">
+                <label for="slice23">민트초코<br>설빙</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice24">
+                <label for="slice24">라라스윗<br>민트초코<br>파인트</label>
+                <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice25">
+                <label for="slice25">민트초코<br>치킨</label><br>
+                
+                <div class="share">
+                    <button id="facebook" type = "button" onclick="shareURL('facebook')" width="50">
+                        <img src="facebook_logo.png"/ width="150">
+                    </button>
+                    <button id="url" type = "button" data-clipboard-text="http://https://www.google.com" onclick = "shareURL('url')">
+                        <img src="url_square.png"/ width="150">
+                    </button>
+                </div>
+                
+            </div>   
+           
+                
+        </div>
+        
+        
+        <script type ="text/javascript">
+            Kakao.init('f9e8b86f056e77f427755559fdcc1114');
+
+function shareURL(type) {
+    var result_code = getParameterByName('result_code')
+
+    if (type == 'facebook') {
+        window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsktgifts.com%2Fcloudgame_test%2Fresult.php%3Fresult_code%3D' + result_code + '&amp;src=sdkpreparse');
+    }
+
+    if (type == 'url') {
+        var clipboard = new ClipboardJS('#url');
+
+        clipboard.on('success', function (e) {
+            alert("클립보드에 복사되었습니다.")
+        });
+    }
+
+    if (type == 'kakaotalk') {
+        if (result_code == '1')
+            Kakao.Link.sendCustom({templateId: 36334})
+        if (result_code == '2')
+            Kakao.Link.sendCustom({templateId: 36552})
+        if (result_code == '3')
+            Kakao.Link.sendCustom({templateId: 36553})
+        if (result_code == '4')
+            Kakao.Link.sendCustom({templateId: 36554})
+    }
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+            
+            
+            
+            
+            function myfun(){
+                var a=document.getElementsByName('chk');
+                var row_1=0;
+                var row_2=0;
+                var row_3=0;
+                var row_4=0;
+                var row_5=0;
+                var col_1=0;
+                var col_2=0;
+                var col_3=0;
+                var col_4=0;
+                var col_5=0;
+                var cross_1=0;
+                var cross_2=0;
+                var bingo = 0;
+            
+                
+                if((a[0].checked==true) & (a[1].checked==true) & (a[2].checked==true) & (a[3].checked==true) & (a[4].checked==true)){row_1 = 1;}
+                else {row_1 = 0;}
+                if((a[5].checked==true) & (a[6].checked==true) & (a[7].checked==true) & (a[8].checked==true) & (a[9].checked==true)){row_2 = 1;}
+                else {row_2 = 0;}
+                if((a[10].checked==true) & (a[11].checked==true) & (a[12].checked==true) & (a[13].checked==true) & (a[14].checked==true)){row_3 = 1;}
+                else {row_3 = 0;}
+                if((a[15].checked==true) & (a[16].checked==true) & (a[17].checked==true) & (a[18].checked==true) & (a[19].checked==true)){row_4 = 1;}
+                else {row_4 = 0;}
+                if((a[20].checked==true) & (a[21].checked==true) & (a[22].checked==true) & (a[23].checked==true) & (a[24].checked==true)){row_5 = 1;}
+                else {row_5 = 0;}
+                
+                if((a[0].checked==true) & (a[5].checked==true) & (a[10].checked==true) & (a[15].checked==true) & (a[20].checked==true)){col_1 = 1;}
+                else {col_1 = 0;}
+                if((a[1].checked==true) & (a[6].checked==true) & (a[11].checked==true) & (a[16].checked==true) & (a[21].checked==true)){col_2 = 1;}
+                else {col_2 = 0;}
+                if((a[2].checked==true) & (a[7].checked==true) & (a[12].checked==true) & (a[17].checked==true) & (a[22].checked==true)){col_3 = 1;}
+                else {col_3 = 0;}
+                if((a[3].checked==true) & (a[8].checked==true) & (a[13].checked==true) & (a[18].checked==true) & (a[23].checked==true)){col_4 = 1;}
+                else {col_4 = 0;}
+                if((a[4].checked==true) & (a[9].checked==true) & (a[14].checked==true) & (a[19].checked==true) & (a[24].checked==true)){col_5 = 1;}
+                else {col_5 = 0;}
+                
+                if((a[0].checked==true) & (a[6].checked==true) & (a[12].checked==true) & (a[18].checked==true) & (a[24].checked==true)){cross_1 = 1;}
+                else {cross_1 = 0;}
+                if((a[4].checked==true) & (a[8].checked==true) & (a[12].checked==true) & (a[16].checked==true) & (a[20].checked==true)){cross_2 = 1;}
+                else {cross_2 = 0;}
+                
+                bingo = row_1 + row_2 + row_3 + row_4 + row_5 + col_1 + col_2 + col_3 + col_4 + col_5 + cross_1 + cross_2;
+
+                
+                if     (bingo == 12){document.getElementById('notvalid').innerHTML="All clear"}
+                else if(bingo == 11){document.getElementById('notvalid').innerHTML="11 bingo"}
+                else if(bingo == 10){document.getElementById('notvalid').innerHTML="10 bingo"}
+                else if(bingo == 9){document.getElementById('notvalid').innerHTML="9 bingo"}
+                else if(bingo == 8){document.getElementById('notvalid').innerHTML="8 bingo"}                
+                else if(bingo == 7){document.getElementById('notvalid').innerHTML="7 bingo"}
+                else if(bingo == 6){document.getElementById('notvalid').innerHTML="6 bingo"}
+                else if(bingo == 5){document.getElementById('notvalid').innerHTML="5 bingo"}
+                else if(bingo == 4){document.getElementById('notvalid').innerHTML="4 bingo"}
+                else if(bingo == 3){document.getElementById('notvalid').innerHTML="3 bingo"}
+                else if(bingo == 2){document.getElementById('notvalid').innerHTML="2 bingo"}
+                else if(bingo == 1){document.getElementById('notvalid').innerHTML="1 bingo"}               
+                else               {document.getElementById('notvalid').innerHTML=""}
+
+                    
+            }
+        
+        
+        
+        </script>
+        
+    </body>
+</html>
