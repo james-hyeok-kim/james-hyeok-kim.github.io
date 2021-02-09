@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
-        <title> Bingo
+        <title> Mincho Bingo
         </title>
-    
 
-        <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
         <meta name="viewpoint" content="width=device-width, user-scalable=no, initial-scale:1.0, maximum-scale=1.0, minimum-scale=1.0">
-
-
 
     </head>
     
@@ -19,7 +16,7 @@
     body {padding : 0px;}
     input.slice{position : absolute ; left:-2000%;}
     input.slice + label {overflow : hidden; display : inline-flex; justify-content: center; align-items: center;
-        position : relative; width : 173px; height: 170px; left:11.5%; top : 28px; background : white; border-radius: 1px; transition : all 0.5s; border-color : #114636; border-width: 6px; border-style : solid; margin-right : -15px; margin-top : -6px; font-family: 'Gothic A1', sans-serif;
+        position : relative; width : 173px; height: 170px; left:11.5%; top : 28px; background : white; border-radius: 1px; transition : all 0.5s; border-color : #114636; border-width: 6px; border-style : solid; margin-right : -15px; margin-top : -6px; font-family: 'Jua', sans-serif;
         color : black; vertical-align: middle; }
     input.slice:checked + label {background: #d2ded9;}
 
@@ -46,11 +43,11 @@
         display:inline-block;
         border-radius:5px;
         transition : all 0.2s;
-        font-family: 'Gothic A1', sans-serif;
+        font-family: 'Jua', sans-serif;
         position :absolute;
         left :-5%;
         margin-left : -125px;
-        top : 19.25%;
+        top : 22.5%;
         margin-top : 0px;
     }
     .share{
@@ -88,22 +85,23 @@
     .dot_font{
         font-size:50px;
         width : 200px;
-        font-family: 'Gothic A1', sans-serif;
+        font-family: 'Jua', sans-serif;
+        
     }
      .dot{
          width : 400px;
-         height : 100px;
+         height : 70px;
          line-height:40px;
          text-align: center;
          background-color:#fafafa;
          color : black;
-         font-size = 300px;
+         font-size = 200px;
          margin :0 auto;
          left : 115%;
          margin-left : -125px;
-         top : 12.5%;
+         top : 17.5%;
          margin-top : 0px;
-         font-family: 'Gothic A1', sans-serif;
+         font-family: 'Jua', sans-serif;
          display : inline-flex;
          justify-content: center; 
          align-items: center;
@@ -117,13 +115,13 @@
     </style>
 
         <div id="parent" class="img">
-                <img src ="second_page_2.jpg" alt ="Second_image" width="1000">        
+                <img src ="second_page_v2.jpg" alt ="Second_image_v2" width="1000">        
              <div class="dot">
                 <span class="dot_font" id="notvalid"> </span>
             </div>
             <div id="child" class="bingo">
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice1">
-                <label for="slice1" lang="ko">달달하게<br>시작하며<br>깔끔하고<br>상쾌하게<br>끝나는 맛</label>
+                <label for="slice1" lang="ko">민트초코<br>마카롱</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice2">
                 <label for="slice2">스타벅스<br>민트초코<br>프라푸치노<br>(커스텀)</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice3">
@@ -131,11 +129,11 @@
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice4">
                 <label for="slice4">민트초코칩<br>젤라또</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice5">
-                <label for="slice5">민트초코가<br>세상을<br> 지배한다</label><br>
+                <label for="slice5">민트초코<br>팝콘</label><br>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice6">
                 <label for="slice6">맨토스<br>민트초코</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice7">
-                <label for="slice7">민트초코의<br>매력을<br>모르는사람…<br>안됐다</label>
+                <label for="slice7">허쉬<br>민트 웨하스</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice8">
                 <label for="slice8">이디야<br>커피민트<br>초콜렛칩<br>플랫치노</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice9">
@@ -143,7 +141,7 @@
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice10">
                 <label for="slice10">랜디스<br>민트초코도넛</label><br>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice11">
-                <label for="slice11">민초쿠키</label>
+                <label for="slice11">서브웨이<br>민초쿠키</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice12">
                 <label for="slice12">배스킨라빈스민트초코</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice13">
@@ -151,19 +149,19 @@
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice14">
                 <label for="slice14">민트초코<br>아몬드</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice15">
-                <label for="slice15">민초단은<br>박해받지<br>않을<br>권리를<br>가진다</label><br>
+                <label for="slice15">카누<br>민트초코라떼</label><br>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice16">
-                <label for="slice16">커피빈<br>모로칸<br>민트라떼</label>
+                <label for="slice16">슈퍼콘<br>민트초코칩<br>아이스크림</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice17">
                 <label for="slice17">m&m<br>민트초코맛</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice18">
-                <label for="slice18">m&m<br>민트초코맛</label>
+                <label for="slice18">민트초코<br>케이크</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice19">
                 <label for="slice19">오레오<br>민트</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice20">
                 <label for="slice20">안데스<br>민트초콜릿</label><br>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice21">
-                <label for="slice21">카카오+민트<br>조합은<br>16C 유럽에서<br>시작된 근본있는 <br>조합이다.</label>
+                <label for="slice21">GS25<br>민트초코<br>아이스크림</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice22">
                 <label for="slice22">빽다방<br>민트초코<br>빽스치노</label>
                 <input type = "checkbox" name="chk" onclick="return myfun()" class="slice" id="slice23">
@@ -177,7 +175,7 @@
                     <button class = "btn1" id="facebook" type = "button" onclick="shareURL('facebook')">
                         <img src="facebook_logo.png" width="250px" height="150px">
                     </button>
-                    <button class = "btn2" id="url" type = "button" data-clipboard-text="https://james-hyeok-kim.github.io/" onclick = "shareURL('url')" width ="200px" height="150px">
+                    <button class = "btn2" id="url" type = "button" data-clipboard-text="http://bit.ly/3a1eg6O" onclick = "shareURL('url')" width ="200px" height="150px">
                         <img src="url_square.png" width="150px" height="150px">
                     </button>
                 </div>
