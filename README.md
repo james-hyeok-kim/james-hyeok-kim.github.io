@@ -1,3 +1,3 @@
-# http://mincho_bingo.github.io
+# http://james-hyeok-kim.github.io
 website
 ???
