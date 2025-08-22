@@ -1,3 +1,15 @@
+---
+layout: post
+title: "LLM Evaluation."
+subtitle: AI
+gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
+gh-badge: [star, fork, follow]
+tags: [test]
+comments: true
+mathjax: true
+author: James Kim
+---
+
 ### LLM 평가
 * OpenAI Eval 라이브러리
     * HellaSwag, TrughfulQA, MMLU
