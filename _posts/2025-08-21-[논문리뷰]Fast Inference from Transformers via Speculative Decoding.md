@@ -10,6 +10,7 @@ mathjax: true
 author: James Kim
 ---
 
+$M_P$
 
 # Speculative Decoding
 
