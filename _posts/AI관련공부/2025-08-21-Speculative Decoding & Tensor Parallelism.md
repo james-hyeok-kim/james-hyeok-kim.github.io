@@ -1,3 +1,15 @@
+---
+layout: post
+title: "Speculative Decoding & Tensor Parallelism"
+subtitle: AI
+gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
+gh-badge: [star, fork, follow]
+tags: [test]
+comments: true
+mathjax: true
+author: James Kim
+---
+
 ### Speculative Decoding
 
 #### 1. 모델 사이즈 고정 (3B 파라미터) → Hidden Dimension vs Sequence Length Trade-off
