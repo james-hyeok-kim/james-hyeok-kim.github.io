@@ -107,7 +107,7 @@ $$p(x^{(0:T)})=p(x^{(T)}) \displaystyle\prod_{t=1}^{T} p(x^{(t−1)} ∣x ^{(t)}
 
 ##### 핵심
 
-* 각 스텝 \\(p(x^{(t−1)}|x^{(t)})\\) 는 forward의 역과 같은 구조를 갖되, mean, covariance 또는 flip 확률만 학습하면 됩니다.
+* 각 스텝 $p(x^{(t−1)}|x^{(t)})$ 는 forward의 역과 같은 구조를 갖되, mean, covariance 또는 flip 확률만 학습하면 됩니다.
 
 * Gaussian: mean $f_{μ}(x^{(t)} ,t)$, covariance $f_Σ (x^{(t)} ,t)$
 
