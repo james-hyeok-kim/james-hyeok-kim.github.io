@@ -1,3 +1,15 @@
+---
+layout: post
+title: "Activation function (Non-linear)"
+subtitle: AI-Activation
+gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
+gh-badge: [star, fork, follow]
+tags: [test]
+comments: true
+mathjax: true
+author: James Kim
+---
+
 # Activation function (Non-linear)
 
 ## GELU
