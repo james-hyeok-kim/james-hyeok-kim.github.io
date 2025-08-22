@@ -1,3 +1,16 @@
+---
+layout: post
+title: "Continuous Batching"
+subtitle: AI
+gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
+gh-badge: [star, fork, follow]
+tags: [test]
+comments: true
+mathjax: true
+author: James Kim
+---
+
+
 # Continuous Batching
 
 ## Batch
