@@ -1,10 +1,6 @@
 ---
 layout: post
 title: "[논문리뷰]Fast Inference from Transformers via Speculative Decoding"
----
----
-layout: post
-title: "[논문리뷰]Fast Inference from Transformers via Speculative Decoding"
 subtitle: Speculative Decoding
 gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
 gh-badge: [star, fork, follow]
