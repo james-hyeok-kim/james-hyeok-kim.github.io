@@ -1,3 +1,15 @@
+---
+layout: post
+title: "Normalization Techniques "
+subtitle: AI
+gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
+gh-badge: [star, fork, follow]
+tags: [test]
+comments: true
+mathjax: true
+author: James Kim
+---
+
 # Normalization Techniques 
 
 ## Batch & Channel & Layer Normalization
