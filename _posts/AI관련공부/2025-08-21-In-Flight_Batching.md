@@ -1,3 +1,15 @@
+---
+layout: post
+title: "In-Flight Batching"
+subtitle: AI
+gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
+gh-badge: [star, fork, follow]
+tags: [test]
+comments: true
+mathjax: true
+author: James Kim
+---
+
 ## In-Flight Batching
 
 Adaptive batching의 경우, 아래 이미지와 같이 batch 하나에 대해서 longest 기준에 맞춰 padding을 해서 inference를 하게 됩니다.
