@@ -200,6 +200,7 @@ L^{-1} + A\Lambda^{-1}A^T &= \sigma_t^2I + \sqrt{1-\alpha_{t-1}-\sigma^2_t} \cdo
 $$
 
 * 최종식 유도
+
 $$
 \begin{align}
 q_\sigma(x_t\|x_0) &= \mathcal{N}(\sqrt{\alpha_t}x0, (1-\alpha_t)I) \\\\
@@ -218,6 +219,7 @@ q_\sigma(x_{t-1}\|x_0) &= \mathcal{N}(x_{t-1};\mu_q = \frac{\sqrt{1-\alpha_{t-1}
 &= \mathcal{N}(x_{t-1};\mu_q = \sqrt{α_{t−1}}x_0 +  \sqrt{1−α_{t−1}−σ_t^2} \cdot \frac{x_t− \sqrt{α_t} x_0}{\sqrt{1−α_t}},σ_{*t}^2I) \;\; (7)
 \end{align}
 $$
+
 
 * Trained DDPM을 DDIM non-markovian에서 사용 가능 (retrain x )
 
