@@ -1,3 +1,15 @@
+---
+layout: post
+title: "RAG"
+subtitle: AI
+gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
+gh-badge: [star, fork, follow]
+tags: [test]
+comments: true
+mathjax: true
+author: James Kim
+---
+
 # RAG
 
 * RAG는 Retrieval-Augmented Generation의 줄임말로, 외부 지식을 검색(Retrieve)해서 LLM의 생성(Generation)에 보조 정보로 추가하는 방식입니다.
