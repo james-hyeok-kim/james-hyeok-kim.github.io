@@ -10,8 +10,6 @@ mathjax: true
 author: James Kim
 ---
 
-$M_P$
-
 # Speculative Decoding
 
 ## Fast Inference from Transformers via Speculative Decoding
