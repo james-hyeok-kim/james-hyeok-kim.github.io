@@ -1,3 +1,15 @@
+---
+layout: post
+title: "FiLM"
+subtitle: AI
+gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
+gh-badge: [star, fork, follow]
+tags: [test]
+comments: true
+mathjax: true
+author: James Kim
+---
+
 ## FiLM (Feature-wise Linear Modulation)
 * [Paper](https://arxiv.org/pdf/1709.07871)
 * 신경망 중간 특징을 조건정보를 기반으로 선형 변환(Affine Transformation)
