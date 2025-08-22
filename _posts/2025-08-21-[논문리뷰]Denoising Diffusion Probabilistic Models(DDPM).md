@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [논문리뷰]Denoising Diffusion Probabilistic Models(DDPM)
+title: "[논문리뷰]Denoising Diffusion Probabilistic Models(DDPM)"
 subtitle: DDPM (Diffusion)
 gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
 gh-badge: [star, fork, follow]
