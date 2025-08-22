@@ -85,6 +85,7 @@ $Z=∫ϕ(x)dx$를 계산하기가 거의 불가능합니다.
 
 ##### 2.1.1 핵심 개념:
 데이터 분포 $q(x^(0))$로부터 시작해서, 확산 커널을 반복 적용하여 점점 구조를 무너뜨려 단순한 분포 $π(x^{T})$로 만듭니다.
+
 $$q(x^{(t)}∣x^{(t−1)})=T_{π}(x^{(t)}∣x^{(t−1)};β_t) \\ (2) $$
 
 즉, 노이즈를 점점 추가하는 Markov chain입니다.
@@ -101,11 +102,12 @@ $$q(x^{(0:T)})=q(x^{(0)}) \displaystyle\prod^{t=1}_{t=1}q(x^{(t)}∣x^{(t−1)})
 ### 2.2 Reverse Trajectory (Generative Process)
 #### 2.2.1 핵심 개념
 * 정규분포 $𝜋(𝑥^{(𝑇)})$ 에서 시작해서, 학습된 reverse Markov chain을 거쳐 원래 데이터 분포로 되돌아가는 생성 모델.
+
 $$p(x^{(0:T)})=p(x^{(T)}) \displaystyle\prod_{t=1}^{T} p(x^{(t−1)} ∣x ^{(t)})$$
 
 ##### 핵심
 
-* 각 스텝 $p(x^{(t−1)}|x^{(t)})$ 는 forward의 역과 같은 구조를 갖되, mean, covariance 또는 flip 확률만 학습하면 됩니다.
+* 각 스텝 \\(p(x^{(t−1)}|x^{(t)})\\) 는 forward의 역과 같은 구조를 갖되, mean, covariance 또는 flip 확률만 학습하면 됩니다.
 
 * Gaussian: mean $f_{μ}(x^{(t)} ,t)$, covariance $f_Σ (x^{(t)} ,t)$
 
