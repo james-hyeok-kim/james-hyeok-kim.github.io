@@ -1,3 +1,17 @@
+---
+layout: post
+title: "Tensor_Parallelism."
+subtitle: AI
+gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
+gh-badge: [star, fork, follow]
+tags: [test]
+comments: true
+mathjax: true
+author: James Kim
+---
+
+
+
 [분산 처리 3 - Pipeline Parallelism과 Tensor Parallelism에 관하여](https://yjoonjang.medium.com/%EB%B6%84%EC%82%B0-%EC%B2%98%EB%A6%AC-3-pipeline-parallelism%EA%B3%BC-tensor-parallelism%EC%97%90-%EA%B4%80%ED%95%98%EC%97%AC-7b4420fe0281)
 
 ## Tensor Parallelism
