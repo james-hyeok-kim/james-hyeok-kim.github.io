@@ -24,7 +24,7 @@ navbar-links:
 #  Resources:
 #    - Beautiful Jekyll: "https://beautifuljekyll.com"
 #    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "www.linkedin.com/in/jameskim525"
+  Author's home: "https://www.linkedin.com/in/jameskim525"
 
 ################
 # --- Logo --- #
@@ -60,7 +60,7 @@ social-network-links:
 # whatsapp: 15551212
 #  medium: yourname
 #  reddit: yourname or r/yoursubreddit
-  linkedin: www.linkedin.com/in/jameskim525
+  linkedin: "https://www.linkedin.com/in/jameskim525"
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
