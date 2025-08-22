@@ -1,3 +1,16 @@
+---
+layout: post
+title: "Attention_mechanism"
+subtitle: AI
+gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
+gh-badge: [star, fork, follow]
+tags: [test]
+comments: true
+mathjax: true
+author: James Kim
+---
+
+
 [Reference](https://velog.io/@sjinu/%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC-Attention-Mechanism)
 # Attention Mechanism
 
