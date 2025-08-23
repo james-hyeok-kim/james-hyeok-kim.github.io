@@ -125,10 +125,6 @@ $$log\ 𝑝_𝜃(𝑥)≥𝐸_{𝑞_𝜙(𝑧∣𝑥)}[log⁡𝑝_𝜃(𝑥∣�
 ## Training (학습)
 * 훈련 목표 : Variational Upper Bound인 L을 최소화
 
-$$L=E_q \​[ −\log p_θ​(x_0) \] \ge E_{q} ​\[−log\frac{p_θ(x_{0:T})​}{q(x_{1:T​}\|x_0)} \]$$
-
-
-
 $$
 L = E_q \left[ -\log p_\theta(x_0) \right] \ge E_q \left[ -\log \frac{p_\theta(x_{0:T})}{q(x_{1:T}\|x_0)} \right]
 $$
@@ -142,13 +138,15 @@ $$
 \log \; p_θ(x_0)=\log \int p_θ(x_{0:T}) dx_{1:T}
 $$
 ​
+
 여기서 $p_\theta(x_{0:T})$는 모든 시점의 데이터를 포함하는 결합 확률 분포입니다.
 
 2. $q(x_{1:T}\|x_0)$로 확장
 
-```math
+$$
 \log \; p_θ(x_0)= \log \int p_θ(x_{0:T}) \frac{q(x_{1:T}\|x_0)}{q(x_{1:T}\|x_0)} dx_{1:T} = \log \; E_{q(x_{1:T}\|x_0)} \left[ \frac{p_θ(x_{0:T})}{q(x_{1:T}\|x_0)} \right]
-```
+$$
+
 
 여기서 $q(x_{1:T}\|x_0)$는 우리가 학습하는 모델인 인코더(encoder)에 해당하는 분포입니다.
 
@@ -156,9 +154,10 @@ $$
 
 이제 우리의 식을 이 기댓값의 형태로 바꿔봅시다.
 
-```math
+$$
 \log p_θ(x_0)=\log \int \left(\frac{p_θ(x_{0:T})}{q(x_{1:T}\|x_0)} \right) \cdot q(x_{1:T}\|x_0)dx_{1:T}
-```
+$$
+
 
 * $f(X)$에 해당하는 부분은 $\left(\frac{p_θ(x_{0:T})}{q(x_{1:T}\|x_0)} \right)$ 입니다.
 
@@ -172,22 +171,25 @@ $$
 
 $$logE[X]≥E[logX]$$
 
-```math
+
+$$
 \log \; p_θ(x_0)≥E_{q(x_{1:T}∣x_0)} \left[\log \frac{p_θ(x_{0:T})}{q(x_{1:T}∣x_0)} \right]=ELBO
-```
+$$
 
 4. L (Variational Upper Bound)의 등장:
 위에서 유도된 $\log p_\theta(x_0) \ge \text{ELBO}$를 재정렬하면 다음과 같습니다.
 
-```math
+$$
 −log\;p_θ(x_0)≤−ELBO=−E_{q(x_{1:T}∣x_0)} \left[log\frac{p_θ(x_{0:T})}{q(x_{1:T}∣x_0)} \right]
-```
+$$
+
 
 이때, 우변의 항 $- \text{ELBO}$를 우리는 **L (Variational Upper Bound)**라고 부릅니다.
 
-```math
+$$
 L=E_{q(x_{1:T}\| x_0)} \left[−\log \; p_θ(x_{0:T})+ \log \; q(x_{1:T}\|x_0) \right]
-```
+$$
+
 
 
 ### Loss 유도
@@ -196,7 +198,8 @@ $$L=E_q[D_{KL}​(q(x_T\|x_0​)\parallel p(x_T))+\displaystyle\sum_{t>1}D_{KL}�
 * Bayesian Rule $p(x\|y) = \frac{p(x,y)}{p(y)}$
 * Markov Chain $q(x_t\|x_{t-1},x_{t-2},x_0) = q(x_t\|x_{t-1})$
 
-```math
+
+$$
 \begin{align}
 L & = E_q \left[ − \log \frac{p_θ(x_{0:T})}{q(x_{1:T} \|x_0)} \right] \;\; (17) \\\\
 &= E_q \left[ − \log p(x_T) − \displaystyle\sum_{t≥1} \log \frac{p_θ(x_{t−1}\|x_t)}{q(x_t\|x_{t−1})} \right] \;\;(18) \\\\
@@ -210,7 +213,7 @@ L & = E_q \left[ − \log \frac{p_θ(x_{0:T})}{q(x_{1:T} \|x_0)} \right] \;\; (1
 &= E_q \left[ − \log \ \frac{p(x_T)}{q(x_T \|x_0)} − \displaystyle\sum_{t>1} \log \frac{p_θ(x_{t−1}\|x_t)}{q(x_{t−1}\|x_t, x_0)} − \log \ p_θ(x_0\|x_1) \right] \;\;(21) \\\\
 &= E_q \left[ D_{KL}(q(x_T\|x_0) \parallel p(x_T)) + \displaystyle\sum_{t>1} D_{KL}(q(x_{t−1}\|x_t, x_0) \parallel p_θ(x_{t−1}\|x_t)) − \log \ p_θ(x_0\|x_1) \right] \;\;(22) \\\\
 \end{align}
-```
+$$
 
 <img width="1117" height="141" alt="image" src="https://github.com/user-attachments/assets/56681e35-47f1-4217-bb4b-a12d7e5a03be" />
 
@@ -234,7 +237,9 @@ $$
 
 $$q(x_{t−1}∣x_t,x_0)=q(x_t∣x_{t−1})\frac{q(x_{t−1}∣x_0)}{q(x_t∣x_0)}$$
 * 유도
-```math
+
+
+$$
 \begin{align}
 &* Bayesian Rule \\\\
 q(x_{t−1}∣x_t,x_0)&=\frac{q(x_{t−1}, x_t, x_0)}{q(x_t,x_0)} \cdot \frac{q(x_{t-1}, x_0)}{q(x_{t-1}, x_0)} \\\
@@ -244,7 +249,8 @@ q(x_{t−1}∣x_t,x_0)&=q(x_{t−1}\| x_t, x_0) \cdot \frac{q(x_{t-1}\| x_0)}{q(
 &* Markov Chain \\\\
 q(x_{t−1}∣x_t,x_0)&=q(x_t∣x_{t−1})\frac{q(x_{t−1}∣x_0)}{q(x_t∣x_0)}
 \end{align}
-```
+$$
+
 
 * 위의 베이즈 정리 식의 각 항을 지수 부분만으로 나타내면 다음과 같습니다.
 
@@ -253,7 +259,7 @@ q(x_{t−1}∣x_t,x_0)&=q(x_t∣x_{t−1})\frac{q(x_{t−1}∣x_0)}{q(x_t∣x_0)
   * [유도공식](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
 ​
 
-```math
+$$
 \begin{align}
 1. & q(x_t∣x_{t−1})=\mathcal{N}(x_t;\sqrt{1−β_t}x_{t−1},β_tI) \;\; (2) \\\\
 1-1. & 지수 부분: − \frac{(x_t − \sqrt{1−β_t}x_{t−1})^2}{2β_t} \\\\
@@ -264,7 +270,7 @@ q(x_{t−1}∣x_t,x_0)&=q(x_t∣x_{t−1})\frac{q(x_{t−1}∣x_0)}{q(x_t∣x_0)
 q(x_{t−1}∣x_t,x_0) & \propto exp(지수_1+지수_2−지수_3) \\\\
 q(x_{t−1}∣x_t,x_0) & \propto exp(− \frac{(x_t − \sqrt{1−β_t}x_{t−1})^2}{2β_t} -\frac{(x_{t−1}−\sqrt{\bar{α}_{t−1}}x_0)^2}{2(1−\bar{α}_{t−1})}−\frac{(x_t − \sqrt{\bar{α}_t}x_0)^2}{2(1−\bar{α}_t)})
 \end{align}
-```
+$$
 
 
 <img width="855" height="855" alt="image" src="https://github.com/user-attachments/assets/0e7faed0-3c02-4e53-8099-ea2993eee963" />
@@ -272,12 +278,15 @@ q(x_{t−1}∣x_t,x_0) & \propto exp(− \frac{(x_t − \sqrt{1−β_t}x_{t−1}
 
 ---
 ## Loss에서 확률분포 p가 닮아야할 q 이해하기 ( $(5)\rightarrow(8)$ )
-```math
+
+
+$$
 \begin{align}
 L_{t-1} &= \displaystyle\sum_{t>1}D_{KL}​(q(x_{t−1}​\|x_t​,x_0)\parallel p_θ(x_{t−1}\|x_t)) \;\; (5) \\\\
 &= E_q \left[ \frac{1}{2\sigma_t^2}\parallel \tilde{\mu}_t(x_t,x_0) - \mu_\theta(x_t,t)\parallel^2 \right] + C \;\;(8) \\\\
 \end{align}
-```
+$$
+
 
 
 
@@ -324,54 +333,66 @@ $$f(X) = \frac{1}{\sqrt{2\pi\Sigma}} \exp ^{- \left( \frac{(X-\mu)^T(X-\mu)}{2\S
 #### KL Divergence 간소화 (핵심 아이디어)
 두 정규분포 $P_1 = \mathcal{N}(\mu_1, \Sigma_1)$과 $P_2 = \mathcal{N}(\mu_2, \Sigma_2)$ 사이의 KL Divergence 공식은 다음과 같습니다.
 
-```math
+$$
 \begin{align}
 D_{KL}(P_1 \parallel P_2) &= \frac{1}{2} \left( \log\frac{∣Σ_2∣}{∣Σ_1\|}−d+tr(Σ_2^{-1}Σ_1)+(μ_2−μ_1)^TΣ_2^{-1}(μ_2−μ_1) \right)
 \end{align}
-```
+$$
+
 
 #### 두 정규분포 $D_{KL}$ 유도
-```math
+
+$$
 \begin{align}
 D_{KL}(P_1 \parallel P_2) &= \int_{−∞}^{∞}p_1(x) \log \left(\frac{p_1(x)}{p_2(x)} \right)dx \\\\
 &= \int p_1(x)log(p_1(x))dx - \int p_1(x)log(p_2(x))dx \\\\
 &= E_{x∼P_1}[log(p_1(x))]−E_{x∼P_1}[log(p_2(x))] \\\\
 \end{align}
-```
+$$
+
+
 #### 1. $log(p(x))$
-```math
+$$
 \begin{align}
 log(p(x))&= \log \left( \frac{1}{\sqrt{2πσ^2}}e^{−\frac{(x−μ)^2}{2σ^2}} \right) \\\\
 &=log \left(\frac{1}{\sqrt{2πσ^2}} \right) − \frac{(x−μ)^2}{2σ^2} \\\\
 &=−\frac{1}{2}log(2πσ^2) − \frac{(x−μ)^2}{2σ^2}  \\\\
 &=−\frac{1}{2}log(2π)−log(σ) − \frac{(x−μ)^2}{2σ^2}  \\\\
 \end{align}
-```
+$$
+
+
 #### 2. $E[log(p_2(x))]$
-```math
+$$
 \begin{align}
 E_{x∼P_1}[log(p_2(x))]&=E_{x∼P_1} \left[−\frac{1}{2}log(2π)−log(σ_2)−\frac{(x−μ_2)^2}{2σ_2^2} \right] \\\\
 &=−\frac{1}{2}log(2π)−log(σ_2)−\frac{1}{2σ_2^2}E_{x∼P_1}[(x−μ_2)^2] \\\\
 \end{align}
-```
+$$
+
+
 - $E_{x \sim P_1}[(x-\mu_2)^2]를 계산, 괄호 안에 μ_1을 +-$
-```math
+$$
 \begin{align}
 E_{x∼P_1}[(x−μ_1+μ_1−μ_2)^2] &= E_{x∼P_1}[((x−μ_1)+(μ_1−μ_2))^2] \\\\
 &=E_{x∼P_1}[(x−μ_1)^2+2(x−μ_1)(μ_1−μ_2)+(μ_1−μ_2)^2] \\\\
 &=E_{x∼P_1}[(x−μ_1)^2]+2(μ_1−μ_2) E_{x∼P_1}[x−μ_1]+(μ_1−μ_2)^2 \\\\
 \end{align}
-```
+$$
+
+
 - $E_{x \sim P_1}[(x - \mu_1)^2]는 P_1 분포의 정의에 따라 분산 σ_1^2 $
 - $E_{x \sim P_1}[x - \mu_1]는 E[x] - μ_1 = μ_1 - μ_1 = 0$
 - $(\mu_1 - \mu_2)^2는 상수$
-```math
+$$
 \begin{align}
 E_{x∼P_1}[log(p_2(x))]&= −\frac{1}{2}log(2π)−log(σ_2)−\frac{σ_1^2+(μ_1−μ_2)^2}{2σ_2^2} \\\\
 \end{align}
-```
+$$
+
+
 #### 3. $E[log(p_1(x))]$
-```math
+$$
 \begin{align}
 E_{x∼P_1}[log(p_1(x))]&=E_{x∼P_1} \left[−\frac{1}{2}log(2π)−log(σ_1)−\frac{(x−μ_1)^2}{2σ_1^2} \right] \\\\
 &=−\frac{1}{2}log(2π)−log(σ_1)−\frac{1}{2σ_1^2}E_{x∼P_1}[(x−μ_1)^2] \\\\
@@ -379,16 +400,20 @@ E_{x∼P_1}[log(p_1(x))]&=E_{x∼P_1} \left[−\frac{1}{2}log(2π)−log(σ_1)�
 &=−\frac{1}{2}log(2π)−log(σ_1)−\frac{\sigma_1^2}{2σ_1^2} \\\\
 &= −\frac{1}{2}log(2π)−log(σ_1)−\frac{1}{2} \\\\
 \end{align}
-```
+$$
+
+
 
 #### 4. 최종 $E[log(p_2(x))] + E[log(p_1(x))]$
-```math
+$$
 \begin{align}
 D_{KL}(P_1 \parallel P_2) &= \left( −\frac{1}{2}log(2π)−log(σ_1)−\frac{1}{2} \right) - \left( −\frac{1}{2}log(2π)−log(σ_2)−\frac{σ_1^2+(μ_1−μ_2)^2}{2σ_2^2} \right) \\\\
 &= −log(σ_1)−\frac{1}{2} −log(σ_2)−\frac{σ_1^2+(μ_1−μ_2)^2}{2σ_2^2} \\\\
 &= \log \frac{\sigma_2}{\sigma_1} + \frac{\sigma_1^2 + (\mu_1 - \mu_2)^2}{2\sigma_2^2} - \frac{1}{2}
 \end{align}
-```
+$$
+
+
 
 
 ## Loss에서 확률분포 p가 닮아야할 q 정리 ( $(5)\rightarrow(8)$ )
@@ -399,46 +424,53 @@ D_{KL}(P_1 \parallel P_2) &= \left( −\frac{1}{2}log(2π)−log(σ_1)−\frac{1
 
 이 가정을 위 KL Divergence 공식에 대입하면 수식이 극적으로 간소화됩니다.
 
-```math
+$$
 \begin{align}
 로그 항: & \log\frac{\|\sigma_t^2 I\|}{\|\sigma_t^2 I\|} = \log(1) = 0 \\\\
 Trace 항: & \text{tr}((\sigma_t^2 I)^{-1}(\sigma_t^2 I)) = \text{tr}(I) = d
 \end{align}
-```
+$$
+
+
 
 * Trace항은 행렬의 대각 합
 
 여기서 d는 데이터의 차원(dimension)입니다. 이제 남은 항들을 정리하면 다음과 같습니다.
 
-```math
+$$
 \begin{align}
 D_{KL}(q \parallel p_θ) & =\frac{1}{2} \left( 0−d+d+(μ_θ − \tilde{μ})^T(σ_t^2I)^{−1}(μ_θ−\tilde{μ})\right) \\\\
 & = \frac{1}{2}(μ_θ−\tilde{μ})^T \left(\frac{1}{σ_t^2}I \right)(μ_θ−\tilde{μ}) \\\\
 & =  \frac{1}{2σ_t^2}(μ_θ−\tilde{μ})^T(μ_θ−\tilde{μ})
 \end{align}
-```
+$$
+
+
 
 벡터 내적 $v^T v$는 L2-norm의 제곱 $\\|v\\|^2$과 같으므로, 최종적으로 KL Divergence는 두 평균 벡터 간의 **제곱 거리(Squared Distance)**에 비례하는 형태로 정리됩니다.
 
-```math
+$$
 \begin{align}
 D_{KL}(q(x_{t−1}∣x_t,x_0) \parallel p_θ(x_{t−1}∣x_t))= \frac{1}{2σ_t^2} \parallel \tilde{μ}_t(x_t,x_0)−μ_θ (x_t,t) \parallel^2 \;\;(8)
 \end{align}
-```
+$$
+
+
 
 ### (8)수식의 의미
 * $x_0$에 t step noise 더한 이미지 $x_t$를 Neural Net에 줬을때, $q(x_{t-1})$예측, $=q(x_{t-1}\|x_t,x_0)$
 
 $$q(x_{t-1}\|x_t,x_0) = N(x_{t-1}; \tilde{\mu}_t(x_t,x_0), \tilde{\beta}_tI) \\ (6)$$
 
-```math
+$$
 \begin{align}
 L_{t−1} − C &=E_{x_0,\epsilon}\left[\frac{1}{2σ^2_t}\parallel\tilde{µ}_t \left(x_t(x_0,\epsilon),\frac{1}{\sqrt{\bar{α}_t}}(x_t(x_0,\epsilon)− \sqrt{1 − \bar{α}_t}\epsilon) \right) − µ_θ(x_t(x_0,\epsilon), t) \parallel^2 \right] \;\; (9) \\\\
 &= E_{x_0,\epsilon} \left[\frac{1}{2σ^2_t} \parallel \frac{1}{\sqrt{α_t}} \left(x_t(x_0,\epsilon) − \frac{β_t}{\sqrt{1 − \bar{α}_t}}\epsilon\right)− µ_θ(x_t(x_0,\epsilon),t) \parallel^2 \right] \;\; (10) \\\\
 \mu_\theta(x_t, t) &= \tilde{\mu}_t\left(x_t, \frac{1}{\sqrt{\bar{\alpha}_t}}(x_t - \sqrt{1 - \bar{\alpha}_t}\epsilon_\theta(x_t)) \right) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon_\theta(x_t, t) \right) \;\; (11) \\\\
 &= E_{x_0, \epsilon}\left[ \frac{\beta^2_t}{2\sigma^2_t\alpha_t(1-\bar{\alpha}_t)} \left\\| \epsilon - \epsilon_\theta(\sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon, t) \right\\|^2 \right] \;\; (12)
 \end{align}
-```
+$$
+
 
 ### (9),(10),(11),(12)는 (8)수식과 같은 의미
 
@@ -502,29 +534,29 @@ $$\tilde{\mu}_t = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1-
 
 모델의 평균 μ_θ (식 11)
 
-```math
+$$
 \mu_\theta(x_t, t) = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_\theta(x_t,t) \right)
-```
+$$
 
 차이점은 실제 정답 노이즈인 ε 자리에, 우리 신경망이 예측한 노이즈인 $ε_θ$ 가 들어간 것뿐입니다.
 
 식 (10)의 $\mu_\theta$  자리에 식 (11)을 대입합니다.
 
-```math
+$$
 True \;\; \tilde{\mu}_t - Our \;\; Model \;\; \mu_\theta
-```
+$$
 
 $$ L \propto \parallel \frac{1}{\sqrt{α_t}} \left(x_t−\frac{β_t}{\sqrt{1−\bar{α}_t}}ϵ \right) - \frac{1}{\sqrt{α_t}} \left(x_t - \frac{β_t}{\sqrt{1−\bar{α}_t}}ϵ_θ \right) \parallel^2$$
 
 공통 항을 소거, $\frac{1}{\sqrt{α_t}} \cdot x_t$ 항이 양쪽에 공통으로 있으므로 서로 소거됩니다.
 
-```math
+$$
 \begin{align}
 L & \propto \left\\| \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon \right) - \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon_\theta \right) \right\\|^2 \\
 & = \left\| \frac{\beta_t}{\sqrt{\alpha_t}\sqrt{1-\bar{\alpha}_t}}(\epsilon_\theta - \epsilon) \right\|^2 \\
 & = \frac{\beta_t^2}{\alpha_t(1-\bar{\alpha}_t)} \| \epsilon - \epsilon_\theta \|^2
 \end{align}
-```
+$$
 
 #### (11) $\rightarrow$ (12)
 
@@ -532,14 +564,14 @@ L & \propto \left\\| \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{
 
 (4)에서 구한값 대입 $x_t(x_0,\epsilon)=\sqrt{\bar{α}_t}x_0 + \sqrt{(1-\bar{α}_t)}\epsilon, \ \epsilon \sim N(0,I)$
 
-```math
+$$
 \begin{align}
 &= E_{x_0,\epsilon} \left[\frac{1}{2σ^2_t} \parallel \frac{1}{\sqrt{α_t}} \left(x_t(x_0,\epsilon) − \frac{β_t}{\sqrt{1 − \bar{α}_t}}\epsilon\right)− µ_θ(x_t(x_0,\epsilon),t) \parallel^2 \right] \;\; (10) \\\\
 \mu_\theta(x_t, t) &= \tilde{\mu}_t\left(x_t, \frac{1}{\sqrt{\bar{\alpha}_t}}(x_t - \sqrt{1 - \bar{\alpha}_t}\epsilon_\theta(x_t)) \right) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon_\theta(x_t, t) \right) \;\; (11) \\\\
 &= E_{x_0, \epsilon}\left[ \frac{\beta^2_t}{2\sigma^2_t\alpha_t(1-\bar{\alpha}_t)} \left\| \epsilon - \epsilon_\theta(x_t, t) \right\|^2 \right] \;\; (11-1) \\\\
 &= E_{x_0, \epsilon}\left[ \frac{\beta^2_t}{2\sigma^2_t\alpha_t(1-\bar{\alpha}_t)} \left\| \epsilon - \epsilon_\theta(\sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon, t) \right\|^2 \right] \;\; (12)
 \end{align}
-```
+$$
 
 ### $L_0$ 이해하기
 
