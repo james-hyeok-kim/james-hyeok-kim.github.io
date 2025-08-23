@@ -16,7 +16,7 @@ author: James Kim
 
 ## Tensor Parallelism
 
-<p align="center"><img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/03b4b002-e64b-4883-b878-4492ed40b8ee" />
+<p align="center"><img width="1920" height="540" alt="image" src="https://github.com/user-attachments/assets/03b4b002-e64b-4883-b878-4492ed40b8ee" />
 
 
 Tensor Parallelis (TP)에 관해 살펴보자.
