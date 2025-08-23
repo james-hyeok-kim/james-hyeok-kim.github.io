@@ -127,6 +127,8 @@ $$log\ 𝑝_𝜃(𝑥)≥𝐸_{𝑞_𝜙(𝑧∣𝑥)}[log⁡𝑝_𝜃(𝑥∣�
 
 $$L=E_q \​[ −\log p_θ​(x_0) \] \ge E_{q} ​\[−log\frac{p_θ(x_{0:T})​}{q(x_{1:T​}\|x_0)} \]$$
 
+
+
 $$
 L = E_q \left[ -\log p_\theta(x_0) \right] \ge E_q \left[ -\log \frac{p_\theta(x_{0:T})}{q(x_{1:T}\|x_0)} \right]
 $$
@@ -136,9 +138,9 @@ $$
 
 1. 로그-우도(Log-Likelihood)
 
-```math
+$$
 \log \; p_θ(x_0)=\log \int p_θ(x_{0:T}) dx_{1:T}
-```
+$$
 ​
 여기서 $p_\theta(x_{0:T})$는 모든 시점의 데이터를 포함하는 결합 확률 분포입니다.
 
