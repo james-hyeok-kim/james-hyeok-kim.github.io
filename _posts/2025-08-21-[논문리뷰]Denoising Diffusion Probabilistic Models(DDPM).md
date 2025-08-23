@@ -216,13 +216,12 @@ Loss를 통해 P를 어떻게 구하는지는 알았는데, q는 어떻게 구�
 
 $$q(x_{t-1}\|x_t,x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t,x_0), \tilde{\beta}_tI) \\ (6)$$
 
-```math
+$$
 \begin{align}
-{\tilde{\mu}}_{t}(x_t,x_0) &= \frac{\sqrt{{% raw %}{{\bar{\alpha}}_{t-1}}{% endraw %}} \beta_t}{1-{% raw %}{\bar{\alpha}}_t{% endraw %}}x_0 + \frac {\sqrt{\alpha_t}(1-{% raw %}{\bar{\alpha}}_{t-1}{% endraw %})}{1-{% raw %}{\bar{\alpha}}_t{% endraw %}} x_{t} \;\; (7) \\\\
-\tilde{\beta_t}:=\frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t}\beta_t  \;\; (7)
+\tilde{\mu}_{t}(x_t,x_0) &= \frac{\sqrt{{% raw %}{{\bar{\alpha}}_{t-1}}{% endraw %}} \beta_t}{1-{% raw %}{\bar{\alpha}}_t{% endraw %}}x_0 + \frac {\sqrt{\alpha_t}(1-{% raw %}{\bar{\alpha}}_{t-1}{% endraw %})}{1-{% raw %}{\bar{\alpha}}_t{% endraw %}} x_{t} \;\; (7) \\\\
+\tilde{\beta}_t & \coloneqq \frac{1-{% raw %}{\bar{\alpha}}_{t-1}{% endraw %}}{1-{% raw %}{\bar{\alpha}}_t{% endraw %}}\beta_t \;\; (7)
 \end{align}
-```
-
+$$
 
 
 * $평균 : \tilde{\mu}_t, 분산 : \tilde{\beta}_t$의 가우시안분포를 따른다는 뜻
