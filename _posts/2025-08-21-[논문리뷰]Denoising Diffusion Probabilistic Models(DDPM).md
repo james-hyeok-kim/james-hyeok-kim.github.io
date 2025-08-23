@@ -127,6 +127,10 @@ $$log\ 𝑝_𝜃(𝑥)≥𝐸_{𝑞_𝜙(𝑧∣𝑥)}[log⁡𝑝_𝜃(𝑥∣�
 
 $$L=E_q \​[ −\log p_θ​(x_0) \] \ge E_{q} ​\[−log\frac{p_θ(x_{0:T})​}{q(x_{1:T​}\|x_0)} \]$$
 
+$$
+L = E_q \left[ -\log p_\theta(x_0) \right] \ge E_q \left[ -\log \frac{p_\theta(x_{0:T})}{q(x_{1:T}\|x_0)} \right]
+$$
+
 #### Variational Upper Bound 유도
 정확한 유도 과정:
 
