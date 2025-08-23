@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 6.0.1 | Copyright Dean Attali 2023 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  
+
+  <title>LLM Evaluation. | AI 리부팅 (AI Rebooting)</title>
+
+  
+  
+  <meta name="author" content="James Kim">
+  
+
+  <meta name="description" content="AI">
+
+  
+
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="AI 리부팅 (AI Rebooting)" href="/feed.xml">
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="AI 리부팅 (AI Rebooting)">
+  <meta property="og:title" content="LLM Evaluation. | AI 리부팅 (AI Rebooting)">
+  <meta property="og:description" content="AI">
+
+  
+  <meta property="og:image" content="/assets/img/AI.jpg">
+  
+
+  
+  <meta property="og:type" content="article">
+  
+  <meta property="og:article:author" content="James Kim">
+  
+  <meta property="og:article:published_time" content="2025-08-21T00:00:00-04:00">
+  <meta property="og:url" content="/2025-08-21-LLM-Evaluation/">
+  <link rel="canonical" href="/2025-08-21-LLM-Evaluation/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="LLM Evaluation. | AI 리부팅 (AI Rebooting)">
+  <meta property="twitter:description" content="AI">
+
+  
+  <meta name="twitter:image" content="/assets/img/AI.jpg">
+  
+
+  
+
+
+  
+
+  
+  
+
+  
+
+</head>
+
+
+<body>
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" href="/">AI 리부팅 (AI Rebooting)</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/about%20me">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.linkedin.com/in/jameskim525">Author's home</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-search-link" href="#" title="Search">
+            <span id="nav-search-icon" class="fa fa-search"></span>
+            <span id="nav-search-text">Search</span>
+          </a>
+        </li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        <a href="/">
+          <img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/AI.jpg" />
+        </a>
+      </div>
+    </div>
+  
+
+</nav>
+
+
+
+<div id="beautifuljekyll-search-overlay">
+
+  <div id="nav-search-exit" title="Exit search">✕</div>
+  <input type="text" id="nav-search-input" placeholder="Search">
+  <ul id="search-results-container"></ul>
+  
+  <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+  <script>
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('nav-search-input'),
+      resultsContainer: document.getElementById('search-results-container'),
+      json: '/assets/data/searchcorpus.json' 
+    });
+  </script>
+</div>
+
+
+
+
+
+  
+
+
+
+<header class="header-section ">
+<div class="intro-header ">
+  
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+        <div class="post-heading">
+          <h1>LLM Evaluation.</h1>
+          
+            
+              <h2 class="post-subheading">AI</h2>
+            
+          
+          
+           
+            
+              By <strong>James Kim</strong><br>
+            
+            <span class="post-meta">Posted on August 21, 2025</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
+
+
+
+</header>
+
+
+<main class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 ">
+
+      
+        
+        
+        
+
+        <div id="header-gh-btns">
+          
+            
+              
+                  <iframe src="https://ghbtns.com/github-btn.html?user=james-hyeok-kim&repo=james-hyeok-kim.github.io.git&type=star&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
+                
+            
+              
+                  <iframe src="https://ghbtns.com/github-btn.html?user=james-hyeok-kim&repo=james-hyeok-kim.github.io.git&type=fork&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
+                
+            
+              
+                  <iframe src="https://ghbtns.com/github-btn.html?user=james-hyeok-kim&type=follow&count=true" frameborder="0" scrolling="0" width="220px" height="20px"></iframe>
+              
+            
+          
+        </div>
+      
+
+      
+
+      <div class="blog-post">
+        <h3 id="llm-평가">LLM 평가</h3>
+<ul>
+  <li>OpenAI Eval 라이브러리
+    <ul>
+      <li>HellaSwag, TrughfulQA, MMLU</li>
+    </ul>
+  </li>
+  <li>Open-Ko-LLM 리더보드
+    <ul>
+      <li>ARC, HellaSwag, MMLU, TruthfulQA, Text Generation</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="1-coding-task">1. Coding Task</h4>
+<p>1-1. HumanEval : LLM Benchmark for Code Generation</p>
+<ul>
+  <li>OpenAI가 공개한 HumanEval Data Set에는 signature, docstring, body, several unit test들이 포함된 164개의 프로그래밍 문제가 포함되어 있습니다.</li>
+  <li>코드 생성 모델의 traning set에 포함되지 않게 하기 위해 handwritten되었습니다.</li>
+</ul>
+
+<p>1-2. MBPP(Mostly Basic Python Progamming)</p>
+<ul>
+  <li>MBPP 벤치마크는 프로그래밍의 기초, 표준 라이브러리 기능 등을 다루는 보급형 프로그래머가 해결할 수 있도록 설계된 약 1,000개의 클라우드 소스 파이썬 프로그래밍 문제로 구성되어 있습니다.</li>
+  <li>각 문제는 작업 설명, 코드 솔루션 및 3개의 자동화 된 테스트 사례로 구성됩니다.</li>
+</ul>
+
+<h4 id="2-chatbot-assistance">2. Chatbot Assistance</h4>
+<p>2-1. Chatbot Arena</p>
+<ul>
+  <li>LMSYS 챗봇 아레나는 LLM Evals를 위한 클라우드소싱 오픈 플랫폼입니다.</li>
+  <li>Bradley-Terry model로 LLM의 순위를 정하고 모델 등급을 Elo-scale로 표시하기 위해 800,000개 이상의 human pairwise 비교를 수집했습니다.</li>
+</ul>
+
+<p><img width="1512" height="1237" alt="image" src="https://github.com/user-attachments/assets/880e760c-539f-4942-bf66-b75de9c8a5a1" /></p>
+
+<p>2-2. MT Bench</p>
+<ul>
+  <li>MT Bench 데이터 셋트에는 80개의 질문에 대한 응답으로 6개 모델이 생성한 응답에 대한 3.3k 전문가 수준의 인간 선호도가 포함되어 있습니다.</li>
+  <li>6개 모델은 GPT-4, GPT-3.5, Claud-V1, Vicuna-13B, Alpaca-13B 및 LLaMA-13B입니다.
+<img width="1663" height="1613" alt="image" src="https://github.com/user-attachments/assets/7cb24c85-91fa-4d7c-ad85-ae1384be7342" /></li>
+</ul>
+
+<h4 id="3-reasoning추론">3. Reasoning(추론)</h4>
+<p>3.1 ARC Benchmark : Evaluation LLM’s Reasoning Abilities</p>
+<ul>
+  <li>ARC(AI2 Ressoning Challenge)는 강력한 지식과 추론을 요구하는 테스트이며, 질문 세트에서 Challenge set과 esay set으로 구분해 볼 수 있습니다.</li>
+  <li>Challenge set은 검색 기반 알고리즘(retrieval-based algorithm)과 단어 동시 발생 알고리즘(word-co-occurrence algorithm)에 의해 잘못 답변된 질문만 포함하고 있습니다.</li>
+  <li>ARC 데이터 셋은 3~9학년 수준의 과학 문항 7,787개로 구성되어 있으며, 다양한 유형(공간, 실험, 대수, 프로세스, 사실, 구조, 정의 및 목적 : spatial, experimental, algebraic, process, factual, structural, definition, purpose)을 포함하고 있습니다.</li>
+</ul>
+
+<p><img width="586" height="438" alt="image" src="https://github.com/user-attachments/assets/34c39454-bebd-45e9-86cc-98a1c7b35bec" /></p>
+
+<p>3.2 HellaSwag : Understanding the LLM Bechmark for Commonsence Reasoning</p>
+<ul>
+  <li>미완성된 구절을 LLM으로 하여금 완성하게 합니다. 문맥에 따라 테스트를 이해하고 예측하는 능력을 테스트함으로써 상식적인 추론을 평가합니다.</li>
+  <li>데이터 세트를 생성하고 복잡성을 높이는 AF(Adversarial Filtering)을 통해 데이터 세트를 구성하며, AF를 사용하여 벤치마키 데이터 세트의 편향 및 아티팩트 문제를 해결하였습니다.
+<img width="762" height="282" alt="image" src="https://github.com/user-attachments/assets/b0cc0aba-faf1-4d81-96ae-be3b8ef65852" /></li>
+</ul>
+
+<p>3.3 MMLU(Measuring Massive Multitask Language Understanding) : Better Benchmarking for LLM Language Understanding</p>
+<ul>
+  <li>모델의 멀티태스킹 정확도를 측정하는 테스트이며, 초등 수학, 미국 역사, 컴퓨터 과학, 법학 등을 포함한 57개 과제를 초등부터 고급 전문가 수준까지 다양한 수준에서 수행합니다.</li>
+  <li>이 테스트에서 높은 정확도를 얻으려면 모델은 광범위한 세계 지식과 문제 해결 능력을 보유하고 있습니다.</li>
+</ul>
+
+<p><img width="1224" height="584" alt="image" src="https://github.com/user-attachments/assets/074cbfe1-7f81-4bf7-85f6-65cecb3534a1" /></p>
+
+<p><img width="842" height="332" alt="image" src="https://github.com/user-attachments/assets/f5e64997-2f99-4706-8a27-67df8780afb3" /></p>
+
+<p>3.4 TriviaQA</p>
+<ul>
+  <li>언어 모델이 질문에 대한 답변을 생성하는데 진실한지 여부를 측정합니다. 데이터 세트의 질문은 인간이 잘못된 믿음이나 오해를 가지고 있기 때문에 오답을 줄 수 있으며, 오답 생성을 피하도록 구성해야 합니다.</li>
+  <li>이 벤치마크는 건강, 법률, 금융 및 정치를 포함한 38개 항목에 걸쳐 817개의 질문으로 구성되어 있습니다.</li>
+</ul>
+
+<p><img width="550" height="508" alt="image" src="https://github.com/user-attachments/assets/25cafea5-e34c-495e-9728-7f5fca79a0c9" /></p>
+
+<p>3.5 WinoGrande</p>
+<ul>
+  <li>자연어 처리를 기반으로 문맥을 올바르게 파악하는 LLM의 능력을 테스트하기 위해 두 개의 가능한 답이 있는 거의 동일한 문장 쌍으로 구성이 되어 있습니다.</li>
+  <li>44K의 대규모 문제로 구성하여 데이터셋을 개선하였으며, 문장이 주어졌을 때, 뒤를 완성하는 방식으로 상식적 추론을 테스트 합니다.</li>
+</ul>
+
+<p><img width="906" height="242" alt="image" src="https://github.com/user-attachments/assets/53530a15-3ca9-446f-9e80-47957ef96635" /></p>
+
+<p>3.6 GSM8k</p>
+
+<ul>
+  <li>GSM8k는 기본적인 수학 연산을 사용하여 다단계 수학 문제를 해결하는 능력을 테스트합니다.</li>
+  <li>2단계부터 8단계까지 풀어야 하는 초등학교 수준의 수학 문제를 통해 모델의 수학적 추론 및 문제 해결 능력을 측정 합니다.</li>
+</ul>
+
+<p><img width="848" height="450" alt="image" src="https://github.com/user-attachments/assets/49365031-e222-4dd3-8039-dd6ecef7c5d4" /></p>
+
+<h3 id="llm-기반-시스템-평가">LLM 기반 시스템 평가</h3>
+<p><img width="1315" height="623" alt="image" src="https://github.com/user-attachments/assets/0ed2ba75-7807-4ad3-a30c-5aa43ebfe8ef" /></p>
+
+<ul>
+  <li>LLM 시스템 평가는 시스템에서 제어할 수 있는 구성 요소들을 각각 평가하는 것을 의미합니다.</li>
+  <li>그림에서 보여지 듯 하나의 모델에 입력 프롬프트 및 프롬프트 템플릿 등을 변경해 가면서 시스템의 성능을 평가하는 것입니다.</li>
+  <li>LLM 시스템 평가 지표로는 Extracting structured information, Question answering, Retrieval Augmented Generation 등을 사용합니다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Example Metrics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Diversity</td>
+      <td>Examines the versatility of foundation models in responding to different types of queries</td>
+      <td>Fluency, Perplexity, ROUGE scores</td>
+    </tr>
+    <tr>
+      <td>User Feedback</td>
+      <td>Goes beyond accuracy to look at response quality in terms of coherence and usefulness</td>
+      <td>Coherence, Quality, Relevance</td>
+    </tr>
+    <tr>
+      <td>Ground Truth-Based Metrics</td>
+      <td>Compares a RAG system’s responses to a set of predefined, correct answers</td>
+      <td>Accuracy, F1 score, Precision, Recall</td>
+    </tr>
+    <tr>
+      <td>Answer Relevance</td>
+      <td>How relevant the LLM’s response is to a given user’s query</td>
+      <td>Binary classification (Relevant/Irrelevant)</td>
+    </tr>
+    <tr>
+      <td>QA Correctness</td>
+      <td>Based on retrieved data, is an answer to a question correct?</td>
+      <td>Binary classification (Correct/Incorrect)</td>
+    </tr>
+    <tr>
+      <td>Hallucinations</td>
+      <td>Looking at LLM hallucinations with regard to retrieved context</td>
+      <td>Binary classification (Factual/Hallucinated)</td>
+    </tr>
+    <tr>
+      <td>Toxicity</td>
+      <td>Are responses racist, biased or toxic?</td>
+      <td>Disparaity Analysis, Fairness Scoring, Binary classification (Non-Toxic/Toxic)</td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#test">test</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+
+  
+
+  
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2F2025-08-21-LLM-Evaluation%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2025-08-21-KV_Cache/" data-toggle="tooltip" data-placement="top" title="KV Cache">
+            <i class="fas fa-arrow-left" alt="Previous Post"></i>
+            <span class="d-none d-sm-inline-block">Previous Post</span>
+          </a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2025-08-21-LangChain/" data-toggle="tooltip" data-placement="top" title="LangChain">
+            <span class="d-none d-sm-inline-block">Next Post</span>
+            <i class="fas fa-arrow-right" alt="Next Post"></i>
+          </a>
+        </li>
+        
+      </ul>
+      
+  
+  
+  
+
+  
+
+
+  
+
+  
+
+
+
+    </div>
+  </div>
+</main>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+      
+<ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a href="mailto:younghyeok25@gmail.com" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a href="https://github.com/https://github.com/james-hyeok-kim/james-hyeok-kim.github.io.git" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a href="https://linkedin.com/in/https://www.linkedin.com/in/jameskim525" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li></ul>
+
+
+      
+      <p class="copyright text-muted">
+      
+        James kim
+        &nbsp;&bull;&nbsp;
+      
+      2025
+
+      
+        &nbsp;&bull;&nbsp;
+        <span class="author-site">
+          <a href="/">MyWebsite.com</a>
+        </span>
+      
+
+      
+
+      
+
+      </p>
+      <p class="theme-by text-muted">
+        Powered by
+        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+      </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
