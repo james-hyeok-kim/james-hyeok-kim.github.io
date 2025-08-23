@@ -223,7 +223,6 @@ $$
 \end{align}
 $$
 
-
 * $평균 : \tilde{\mu}_t, 분산 : \tilde{\beta}_t$의 가우시안분포를 따른다는 뜻
 
 
