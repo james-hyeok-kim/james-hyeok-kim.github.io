@@ -125,7 +125,7 @@ $$log\ 𝑝_𝜃(𝑥)≥𝐸_{𝑞_𝜙(𝑧∣𝑥)}[log⁡𝑝_𝜃(𝑥∣�
 ## Training (학습)
 * 훈련 목표 : Variational Upper Bound인 L을 최소화
 
-$$L=E_q​[ −logp_θ​(x_0)\]≤E_{q}​[−log\frac{p_θ(x_{0:T})​}{q(x_{1:T​}∣x_0)}\]$$
+$$L=E_q\​[ −logp_θ​(x_0)\] \ge E_{q}​\[−log\frac{p_θ(x_{0:T})​}{q(x_{1:T​}\|x_0)}\]$$
 
 #### Variational Upper Bound 유도
 정확한 유도 과정:
@@ -133,7 +133,7 @@ $$L=E_q​[ −logp_θ​(x_0)\]≤E_{q}​[−log\frac{p_θ(x_{0:T})​}{q(x_{1
 1. 로그-우도(Log-Likelihood)
 
 ```math
-\log \; p_θ(x_0)=\log\int{p_θ}(x_{0:T}))dx_{1:T}
+\log \; p_θ(x_0)=\log \int p_θ(x_{0:T}) dx_{1:T}
 ```
 ​
 여기서 $p_\theta(x_{0:T})$는 모든 시점의 데이터를 포함하는 결합 확률 분포입니다.
@@ -141,7 +141,7 @@ $$L=E_q​[ −logp_θ​(x_0)\]≤E_{q}​[−log\frac{p_θ(x_{0:T})​}{q(x_{1
 2. $q(x_{1:T}\|x_0)$로 확장
 
 ```math
-\log\;p_θ(x_0)= \log \int{p_θ(x_{0:T}) \frac{q(x_{1:T}∣x_0)}{q(x_{1:T}∣x_0)} dx_{1:T}} = \log \;E_{q(x_{1:T}∣x_0)} \left[\frac{p_θ(x_{0:T})}{q(x_{1:T}∣x_0)} \right]
+\log \; p_θ(x_0)= \log \int p_θ(x_{0:T}) \frac{q(x_{1:T}\|x_0)}{q(x_{1:T}\|x_0)} dx_{1:T} = \log \; E_{q(x_{1:T}\|x_0)} \left[ \frac{p_θ(x_{0:T})}{q(x_{1:T}\|x_0)} \right]
 ```
 
 여기서 $q(x_{1:T}\|x_0)$는 우리가 학습하는 모델인 인코더(encoder)에 해당하는 분포입니다.
@@ -151,10 +151,10 @@ $$L=E_q​[ −logp_θ​(x_0)\]≤E_{q}​[−log\frac{p_θ(x_{0:T})​}{q(x_{1
 이제 우리의 식을 이 기댓값의 형태로 바꿔봅시다.
 
 ```math
-\log p_θ(x_0)=\log \int \left(\frac{p_θ(x_{0:T})}{q(x_{1:T}∣x_0)} \right)⋅q(x_{1:T}∣x_0)dx_{1:T}
+\log p_θ(x_0)=\log \int \left(\frac{p_θ(x_{0:T})}{q(x_{1:T}\|x_0)} \right) \cdot q(x_{1:T}\|x_0)dx_{1:T}
 ```
 
-* $f(X)$에 해당하는 부분은 $\left(\frac{p_θ(x_{0:T})}{q(x_{1:T}∣x_0)} \right)$ 입니다.
+* $f(X)$에 해당하는 부분은 $\left(\frac{p_θ(x_{0:T})}{q(x_{1:T}\|x_0)} \right)$ 입니다.
 
 * 분포 $p(X)$에 해당하는 부분은 $q(x_{1:T}∣x_0)$입니다.
 
@@ -180,7 +180,7 @@ $$logE[X]≥E[logX]$$
 이때, 우변의 항 $- \text{ELBO}$를 우리는 **L (Variational Upper Bound)**라고 부릅니다.
 
 ```math
-L=E_{q(x_{1:T}∣x_0)} \left[−\log \;p_θ(x_{0:T})+ \log \; q(x_{1:T}∣x_0) \right]
+L=E_{q(x_{1:T}\| x_0)} \left[−\log \; p_θ(x_{0:T})+ \log \; q(x_{1:T}\|x_0) \right]
 ```
 
 
