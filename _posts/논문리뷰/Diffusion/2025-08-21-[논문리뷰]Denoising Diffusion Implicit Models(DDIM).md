@@ -364,11 +364,11 @@ We consider two types of selection procedure for τ given the desired dim($τ$) 
 
 $$
 \begin{align}
-s_\theta(x) \approx \nabla_xlog(p(x)) \\\\
-\frac{1}{2}E_{x\sim p_data} \parallel \nabla_x log(p_{data}(x)) - s_\theta(x) \parallel^2_2 \\\\
-\text{Minimizing Euclidean Distance between Data Score x and Estimated Score x} \\\\
-E_{x\sim p_data} \left[ \frac{1}{2} \parallel s_\theta(x) \parallel^2_2 + tr(\nabla_xs_\theta(x)) \right] \\\\
-tr = Trace \text{대각합} 
+& s_\theta(x) \approx \nabla_xlog(p(x)) \\\\
+& \frac{1}{2}E_{x\sim p_data} \parallel \nabla_x log(p_{data}(x)) - s_\theta(x) \parallel^2_2 \\\\
+& \text{Minimizing Euclidean Distance between Data Score x and Estimated Score x} \\\\
+& E_{x\sim p_data} \left[ \frac{1}{2} \parallel s_\theta(x) \parallel^2_2 + tr(\nabla_xs_\theta(x)) \right] \\\\
+& tr = Trace \text{대각합} 
 \end{align}
 $$
 
@@ -431,10 +431,10 @@ L(\theta) &= E_{x\sim p_{data}} \left[\frac{1}{2}\parallel s_\theta (x) \paralle
 $$
 
 
-###  $∇_{x̃}log(q_σ(x̃))$를 계산하려면 여전히 $p_{data}$를 알아야 함. 즉, 또다시 계산 불가능한 문제
-* 핵심은 목표 스코어를 $∇_{\tilde{x}}log(q_σ(x̃))$에서 $∇_{\tilde{x}}log(q_σ(\tilde{x} \vert x))$로 바꾼 것입니다.
+###  $\nabla_{\tilde{x}}log(q_sigma(\tilde{x}))$ 를 계산하려면 여전히 $p_{\text{data}}$ 를 알아야 함. 즉, 또다시 계산 불가능한 문제
+* 핵심은 목표 스코어를 $\nabla_{\tilde{x}}log(q_\sigma(\tilde{x}))$ 에서 $∇_{\tilde{x}}log(q_\sigma(\tilde{x} \vert x))$ 로 바꾼 것입니다.
 
-* 계산 가능한 목표 (✅): $q_σ(\tilde{x} \vert x)$는 "깨끗한 데이터 x가 주어졌을 때, 노이즈 낀 데이터 $\tilde{x}$가 나올 확률"입니다. 이것은 우리가 직접 정의하는 간단한 가우시안 분포 $N(\tilde{x} \vert x,σ²I)$입니다.
+* 계산 가능한 목표 (✅): $q_σ(\tilde{x} \vert x)$ 는 "깨끗한 데이터 x가 주어졌을 때, 노이즈 낀 데이터 $\tilde{x}$ 가 나올 확률"입니다. 이것은 우리가 직접 정의하는 간단한 가우시안 분포 $N(\tilde{x} \vert x,σ²I)$입니다.
 
 * 우리는 이 함수의 정확한 식을 알고 있기 때문에, 스코어 $∇_{\tilde{x}}log(q_σ(\tilde{x} \vert x))$를 쉽게 계산할 수 있습니다. 그 결과가 바로 $-(\tilde{x}-x)/σ²$ 입니다.
 
