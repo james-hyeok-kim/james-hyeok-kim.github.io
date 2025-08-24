@@ -431,18 +431,19 @@ L(\theta) &= E_{x\sim p_{data}} \left[\frac{1}{2}\parallel s_\theta (x) \paralle
 $$
 
 
-###  $\nabla_{\tilde{x}}log(q_sigma(\tilde{x}))$ 를 계산하려면 여전히 $p_{\text{data}}$ 를 알아야 함. 즉, 또다시 계산 불가능한 문제
-* 핵심은 목표 스코어를 $\nabla_{\tilde{x}}log(q_\sigma(\tilde{x}))$ 에서 $∇_{\tilde{x}}log(q_\sigma(\tilde{x} \vert x))$ 로 바꾼 것입니다.
+###  $\nabla_{\tilde{x}}log(q_\sigma(\tilde{x}))$ 를 계산하려면 여전히 $p_{\text{data}}$ 를 알아야 함. 즉, 또다시 계산 불가능한 문제
+* 핵심은 목표 스코어를 $\nabla_{\tilde{x}}log(q_\sigma(\tilde{x}))$ 에서 $\nabla_{\tilde{x}}log(q_\sigma(\tilde{x} \vert x))$ 로 바꾼 것입니다.
 
 * 계산 가능한 목표 (✅): $q_σ(\tilde{x} \vert x)$ 는 "깨끗한 데이터 x가 주어졌을 때, 노이즈 낀 데이터 $\tilde{x}$ 가 나올 확률"입니다. 이것은 우리가 직접 정의하는 간단한 가우시안 분포 $N(\tilde{x} \vert x,σ²I)$입니다.
 
 * 우리는 이 함수의 정확한 식을 알고 있기 때문에, 스코어 $∇_{\tilde{x}}log(q_σ(\tilde{x} \vert x))$를 쉽게 계산할 수 있습니다. 그 결과가 바로 $-(\tilde{x}-x)/σ²$ 입니다.
 
-###  $∇_{x̃}log(q_σ(x̃)) \rightarrow ∇_{x̃}log(q_σ(x̃ \vert x))$
+###  $\nabla_{\tilde{x}}log(q_σ(\tilde{x})) \rightarrow \nabla_{\tilde{x}}log(q_σ(\tilde{x} \vert x))$
 
 $$∇_\tilde{x} log q_σ(\tilde{x})=E_{x∼q(x∣\tilde{x})}[∇_\tilde{x} log q_σ(\tilde{x}∣x)] $$
 
-*  손실 함수 L(θ)를 파라미터 θ로 미분한 값, 즉 **기울기 $∇_θ L(θ)$**를 사용합니다. 만약 두 손실 함수의 기울기가 같다면 $(∇_θ L_{hard} = ∇_θ L_{easy})$, 두 함수를 최적화하는 것은 완벽하게 동일한 과정이 됩니다.
+*  손실 함수 L(θ)를 파라미터 θ로 미분한 값, 즉 기울기 $\nabla_θ L(\theta)$ 를 사용합니다. 만약 두 손실 함수의 기울기가 같다면 $(\nabla_\theta L_{hard} = \nabla_\theta L_{\text{easy}})$, 두 함수를 최적화하는 것은 완벽하게 동일한 과정이 됩니다.
+
 $$
 \begin{align}
 ∇_θL_{hard} &= E_\tilde{x}[−2(∇_\tilde{x}log q_σ(\tilde{x}) − s_θ(\tilde{x}))∇_θs_θ(\tilde{x})] \\\\
