@@ -98,8 +98,8 @@ $$log\ 𝑝_𝜃(𝑥)≥𝐸_{𝑞_𝜙(𝑧∣𝑥)}[log⁡𝑝_𝜃(𝑥∣�
 ---
 
 ## Forward Process (Diffusion Process) $q$
-* $q(x_{1:T}\|x_0) := \displaystyle\prod_{t=1}^{T}q(x_t\|x_{t-1})$
-* $q(x_t\|x_{t-1}) := \mathcal{N}(x_t;\sqrt{1- \beta_{t}}x_{t-1},\beta_{t}I)$
+* $q(x_{1:T}\vertx_0) := \displaystyle\prod_{t=1}^{T}q(x_t \vert x_{t-1})$
+* $q(x_t \vert x_{t-1}) := \mathcal{N}(x_t;\sqrt{1- \beta_{t}}x_{t-1},\beta_{t}I)$
 * 작은 가우시안 노이즈를 T단계에 걸쳐 점차 추가
 * Variance(Noise) Schedule $\beta_1, ... , \beta_T:$
   * 미리 정해둔 노이즈값 (예: 0.0001 ~ 0.02)
@@ -117,8 +117,8 @@ $$log\ 𝑝_𝜃(𝑥)≥𝐸_{𝑞_𝜙(𝑧∣𝑥)}[log⁡𝑝_𝜃(𝑥∣�
 * $p_{\theta}(x_{0:T}) \rightarrow reverse \ process$
 * Markov chain with learned Gaussian transitions, $p(x_T) = \mathcal{N}(x_T;0,I):$ (Normal distribution)
 * 보통 Normal Distribution의 표현 $X \sim N(\mu, \sigma^2)$ 평균 $(\mu)$ , 분산 $(\sigma)^2$ 로 표현
-* $p_{\theta}(x_{0:T}) := p(x_{T})\displaystyle\prod_{t=1}^{T}p_{\theta}(x_{t-1}\|x_{t})$
-* $p_{\theta}(x_{t-1}\|x_t) :=  \mathcal{N} (x_{t-1};\mu_{\theta}(x_t,t),\sum_{\theta}(x_t,t))$
+* $p_{\theta}(x_{0:T}) := p(x_{T})\displaystyle\prod_{t=1}^{T}p_{\theta}(x_{t-1} \vert x_{t})$
+* $p_{\theta}(x_{t-1} \vert x_t) :=  \mathcal{N} (x_{t-1};\mu_{\theta}(x_t,t),\sum_{\theta}(x_t,t))$
 
 ---
 
@@ -126,7 +126,7 @@ $$log\ 𝑝_𝜃(𝑥)≥𝐸_{𝑞_𝜙(𝑧∣𝑥)}[log⁡𝑝_𝜃(𝑥∣�
 * 훈련 목표 : Variational Upper Bound인 L을 최소화
 
 $$
-L = E_q \left[ -\log p_\theta(x_0) \right] \ge E_q \left[ -\log \frac{p_\theta(x_{0:T})}{q(x_{1:T}\|x_0)} \right]
+L = E_q \left[ -\log p_\theta(x_0) \right] \ge E_q \left[ -\log \frac{p_\theta(x_{0:T})}{q(x_{1:T} \vert x_0)} \right]
 $$
 
 #### Variational Upper Bound 유도
@@ -141,25 +141,25 @@ $$
 
 여기서 $p_\theta(x_{0:T})$는 모든 시점의 데이터를 포함하는 결합 확률 분포입니다.
 
-2. $q(x_{1:T}\|x_0)$로 확장
+2. $q(x_{1:T} \vert x_0)$로 확장
 
 $$
-\log \; p_θ(x_0)= \log \int p_θ(x_{0:T}) \frac{q(x_{1:T}\|x_0)}{q(x_{1:T}\|x_0)} dx_{1:T} = \log \; E_{q(x_{1:T}\|x_0)} \left[ \frac{p_θ(x_{0:T})}{q(x_{1:T}\|x_0)} \right]
+\log \; p_θ(x_0)= \log \int p_θ(x_{0:T}) \frac{q(x_{1:T} \vert x_0)}{q(x_{1:T} \vert x_0)} dx_{1:T} = \log \; E_{q(x_{1:T} \vert x_0)} \left[ \frac{p_θ(x_{0:T})}{q(x_{1:T} \vert x_0)} \right]
 $$
 
 
-여기서 $q(x_{1:T}\|x_0)$는 우리가 학습하는 모델인 인코더(encoder)에 해당하는 분포입니다.
+여기서 $q(x_{1:T} \vert x_0)$는 우리가 학습하는 모델인 인코더(encoder)에 해당하는 분포입니다.
 
 확률 변수 X가 분포 $p(X)$를 따를 때, 함수 $f(X)$의 기댓값은 $E_{p(X)}[f(X)]=∫f(X)p(X)dX$ 입니다.
 
 이제 우리의 식을 이 기댓값의 형태로 바꿔봅시다.
 
 $$
-\log p_θ(x_0)=\log \int \left(\frac{p_θ(x_{0:T})}{q(x_{1:T}\|x_0)} \right) \cdot q(x_{1:T}\|x_0)dx_{1:T}
+\log p_θ(x_0)=\log \int \left(\frac{p_θ(x_{0:T})}{q(x_{1:T} \vert x_0)} \right) \cdot q(x_{1:T} \vert x_0)dx_{1:T}
 $$
 
 
-* $f(X)$에 해당하는 부분은 $\left(\frac{p_θ(x_{0:T})}{q(x_{1:T}\|x_0)} \right)$ 입니다.
+* $f(X)$에 해당하는 부분은 $\left(\frac{p_θ(x_{0:T})}{q(x_{1:T} \vert x_0)} \right)$ 입니다.
 
 * 분포 $p(X)$에 해당하는 부분은 $q(x_{1:T}∣x_0)$입니다.
 
@@ -187,31 +187,31 @@ $$
 이때, 우변의 항 $- \text{ELBO}$를 우리는 **L (Variational Upper Bound)**라고 부릅니다.
 
 $$
-L=E_{q(x_{1:T}\| x_0)} \left[−\log \; p_θ(x_{0:T})+ \log \; q(x_{1:T}\|x_0) \right]
+L=E_{q(x_{1:T} \vert  x_0)} \left[−\log \; p_θ(x_{0:T})+ \log \; q(x_{1:T} \vert x_0) \right]
 $$
 
 
 
 ### Loss 유도
-$$L=E_q[D_{KL}​(q(x_T\|x_0​)\parallel p(x_T))+\displaystyle\sum_{t>1}D_{KL}​(q(x_{t−1}​\|x_t​,x_0)\parallel p_θ(x_{t−1}\|x_t))−\log p_θ(x_0\|x_1)] \\ (5) $$
+$$L=E_q[D_{KL}​(q(x_T \vert x_0​)\parallel p(x_T))+\displaystyle\sum_{t>1}D_{KL}​(q(x_{t−1}​ \vert x_t​,x_0)\parallel p_θ(x_{t−1} \vert x_t))−\log p_θ(x_0 \vert x_1)] \\ (5) $$
 * 유도 (Loss 수식 이해) [Youtube](https://www.youtube.com/watch?v=ybvJbvllgJk)
-* Bayesian Rule $p(x\|y) = \frac{p(x,y)}{p(y)}$
-* Markov Chain $q(x_t\|x_{t-1},x_{t-2},x_0) = q(x_t\|x_{t-1})$
+* Bayesian Rule $p(x \vert y) = \frac{p(x,y)}{p(y)}$
+* Markov Chain $q(x_t \vert x_{t-1},x_{t-2},x_0) = q(x_t \vert x_{t-1})$
 
 
 $$
 \begin{align}
-L & = E_q \left[ − \log \frac{p_θ(x_{0:T})}{q(x_{1:T} \|x_0)} \right] \;\; (17) \\\\
-&= E_q \left[ − \log p(x_T) − \displaystyle\sum_{t≥1} \log \frac{p_θ(x_{t−1}\|x_t)}{q(x_t\|x_{t−1})} \right] \;\;(18) \\\\
+L & = E_q \left[ − \log \frac{p_θ(x_{0:T})}{q(x_{1:T}  \vert x_0)} \right] \;\; (17) \\\\
+&= E_q \left[ − \log p(x_T) − \displaystyle\sum_{t≥1} \log \frac{p_θ(x_{t−1} \vert x_t)}{q(x_t \vert x_{t−1})} \right] \;\;(18) \\\\
 * & t\geq1 \rightarrow t\gt1 \\\\
-&= E_q \left[− \log \ p(x_T) − \displaystyle\sum_{t>1} \log \frac{p_θ(x_{t−1}\|x_t)}{q(x_t\|x_{t−1})} − \log \frac{p_θ(x_0\|x_1)}{q(x_1\|x_0)} \right] \;\;(19) \\\\
-* &\frac{1}{q(x_t\|x_{t-1})} = \frac{1}{q(x_{t-1}\|x_t,x_0)} \cdot \frac{q(x_{t-1}\|x_0)}{q(x_t\|x_0)} \\\\
-* & q(x_t\|x_{t-1}) = q(x_t\|x_{t-1}, x_0) = \frac{q(x_t,x_{t-1},x_0)}{q(x_{t-1},x_0)} \cdot \frac{q(x_t,x_0)}{q(x_t,x_0)} = q(x_{t-1}\|x_t,x_0) \cdot \frac{q(x_t,x_0)}{q(x_{t-1},x_0)} \\\\
-&= E_q \left[− \log \ p(x_T) − \displaystyle\sum_{t>1} \log \frac{p_θ(x_{t−1}\|x_t)}{q(x_{t−1}\|x_t, x_0)} · \frac{q(x_{t−1}\|x_0)}{q(x_t\|x_0)} − \log \frac{p_θ(x_0\|x_1)}{q(x_1\|x_0)} \right] \;\;(20) \\\\
-&= E_q \left[− \log \ p(x_T) − \displaystyle\sum_{t>1} \log \frac{p_θ(x_{t−1}\|x_t)}{q(x_{t−1}\|x_t, x_0)} -\displaystyle\sum_{t>1} log \frac{q(x_{t−1}\|x_0)}{q(x_t\|x_0)} − \log \frac{p_θ(x_0\|x_1)}{q(x_1\|x_0)} \right]  \\\\
-* &-\displaystyle\sum_{t>1} log \frac{q(x_{t−1}\|x_0)}{q(x_t\|x_0)} = -log \frac{q(x_1\|x_0)}{q(x_2\|x_0)} -log \frac{q(x_2\|x_0)}{q(x_3\|x_0)} -log \frac{q(x_3\|x_0)}{q(x_4\|x_0)}  \cdots = -log\frac{q(x_1\|x_0)}{q(x_T\|x_0)} \\\\
-&= E_q \left[ − \log \ \frac{p(x_T)}{q(x_T \|x_0)} − \displaystyle\sum_{t>1} \log \frac{p_θ(x_{t−1}\|x_t)}{q(x_{t−1}\|x_t, x_0)} − \log \ p_θ(x_0\|x_1) \right] \;\;(21) \\\\
-&= E_q \left[ D_{KL}(q(x_T\|x_0) \parallel p(x_T)) + \displaystyle\sum_{t>1} D_{KL}(q(x_{t−1}\|x_t, x_0) \parallel p_θ(x_{t−1}\|x_t)) − \log \ p_θ(x_0\|x_1) \right] \;\;(22) \\\\
+&= E_q \left[− \log \ p(x_T) − \displaystyle\sum_{t>1} \log \frac{p_θ(x_{t−1} \vert x_t)}{q(x_t \vert x_{t−1})} − \log \frac{p_θ(x_0 \vert x_1)}{q(x_1 \vert x_0)} \right] \;\;(19) \\\\
+* &\frac{1}{q(x_t \vert x_{t-1})} = \frac{1}{q(x_{t-1} \vert x_t,x_0)} \cdot \frac{q(x_{t-1} \vert x_0)}{q(x_t \vert x_0)} \\\\
+* & q(x_t \vert x_{t-1}) = q(x_t \vert x_{t-1}, x_0) = \frac{q(x_t,x_{t-1},x_0)}{q(x_{t-1},x_0)} \cdot \frac{q(x_t,x_0)}{q(x_t,x_0)} = q(x_{t-1} \vert x_t,x_0) \cdot \frac{q(x_t,x_0)}{q(x_{t-1},x_0)} \\\\
+&= E_q \left[− \log \ p(x_T) − \displaystyle\sum_{t>1} \log \frac{p_θ(x_{t−1} \vert x_t)}{q(x_{t−1} \vert x_t, x_0)} · \frac{q(x_{t−1} \vert x_0)}{q(x_t \vert x_0)} − \log \frac{p_θ(x_0 \vert x_1)}{q(x_1 \vert x_0)} \right] \;\;(20) \\\\
+&= E_q \left[− \log \ p(x_T) − \displaystyle\sum_{t>1} \log \frac{p_θ(x_{t−1} \vert x_t)}{q(x_{t−1} \vert x_t, x_0)} -\displaystyle\sum_{t>1} log \frac{q(x_{t−1} \vert x_0)}{q(x_t \vert x_0)} − \log \frac{p_θ(x_0 \vert x_1)}{q(x_1 \vert x_0)} \right]  \\\\
+* &-\displaystyle\sum_{t>1} log \frac{q(x_{t−1} \vert x_0)}{q(x_t \vert x_0)} = -log \frac{q(x_1 \vert x_0)}{q(x_2 \vert x_0)} -log \frac{q(x_2 \vert x_0)}{q(x_3 \vert x_0)} -log \frac{q(x_3 \vert x_0)}{q(x_4 \vert x_0)}  \cdots = -log\frac{q(x_1 \vert x_0)}{q(x_T \vert x_0)} \\\\
+&= E_q \left[ − \log \ \frac{p(x_T)}{q(x_T  \vert x_0)} − \displaystyle\sum_{t>1} \log \frac{p_θ(x_{t−1} \vert x_t)}{q(x_{t−1} \vert x_t, x_0)} − \log \ p_θ(x_0 \vert x_1) \right] \;\;(21) \\\\
+&= E_q \left[ D_{KL}(q(x_T \vert x_0) \parallel p(x_T)) + \displaystyle\sum_{t>1} D_{KL}(q(x_{t−1} \vert x_t, x_0) \parallel p_θ(x_{t−1} \vert x_t)) − \log \ p_θ(x_0 \vert x_1) \right] \;\;(22) \\\\
 \end{align}
 $$
 
@@ -223,7 +223,7 @@ Loss를 통해 P를 어떻게 구하는지는 알았는데, q는 어떻게 구�
 
 ### $p$가 닮아야할 확률분포 $q$에 대해서 이해하기
 
-$$q(x_{t-1}\|x_t,x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t,x_0), \tilde{\beta}_tI) \\ (6)$$
+$$q(x_{t-1} \vert x_t,x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t,x_0), \tilde{\beta}_tI) \\ (6)$$
 
 $$
 \begin{align}
@@ -242,11 +242,11 @@ $$q(x_{t−1}∣x_t,x_0)=q(x_t∣x_{t−1})\frac{q(x_{t−1}∣x_0)}{q(x_t∣x_0
 
 $$
 \begin{align}
-&* Bayesian Rule \\\\
+&* Bayesian \;\; Rule \\\\
 q(x_{t−1}∣x_t,x_0)&=\frac{q(x_{t−1}, x_t, x_0)}{q(x_t,x_0)} \cdot \frac{q(x_{t-1}, x_0)}{q(x_{t-1}, x_0)} \\\
-q(x_{t−1}∣x_t,x_0)&=\frac{q(x_{t−1}\| x_t, x_0)}{q(x_t,x_0)} \cdot q(x_{t-1}, x_0) \\\\
-q(x_{t−1}∣x_t,x_0)&=\frac{q(x_{t−1}\| x_t, x_0)}{q(x_t,x_0)} \cdot q(x_{t-1}, x_0) \cdot \frac{q(x_0)}{q(x_0)}  \\\\
-q(x_{t−1}∣x_t,x_0)&=q(x_{t−1}\| x_t, x_0) \cdot \frac{q(x_{t-1}\| x_0)}{q(x_t\|x_0)} \\\\
+q(x_{t−1}∣x_t,x_0)&=\frac{q(x_{t−1}  \vert  x_t, x_0)}{q(x_t,x_0)} \cdot q(x_{t-1}, x_0) \\\\
+q(x_{t−1}∣x_t,x_0)&=\frac{q(x_{t−1}  \vert  x_t, x_0)}{q(x_t,x_0)} \cdot q(x_{t-1}, x_0) \cdot \frac{q(x_0)}{q(x_0)}  \\\\
+q(x_{t−1}∣x_t,x_0)&=q(x_{t−1}  \vert  x_t, x_0) \cdot \frac{q(x_{t-1}  \vert  x_0)}{q(x_t  \vert x_0)} \\\\
 &* Markov Chain \\\\
 q(x_{t−1}∣x_t,x_0)&=q(x_t∣x_{t−1})\frac{q(x_{t−1}∣x_0)}{q(x_t∣x_0)}
 \end{align}
@@ -283,7 +283,7 @@ $$
 
 $$
 \begin{align}
-L_{t-1} &= \displaystyle\sum_{t>1}D_{KL}​(q(x_{t−1}​\|x_t​,x_0)\parallel p_θ(x_{t−1}\|x_t)) \;\; (5) \\\\
+L_{t-1} &= \displaystyle\sum_{t>1}D_{KL}​(q(x_{t−1}​ \vert x_t​,x_0)\parallel p_θ(x_{t−1} \vert x_t)) \;\; (5) \\\\
 &= E_q \left[ \frac{1}{2\sigma_t^2}\parallel \tilde{\mu}_t(x_t,x_0) - \mu_\theta(x_t,t)\parallel^2 \right] + C \;\;(8) \\\\
 \end{align}
 $$
@@ -336,7 +336,7 @@ $$f(X) = \frac{1}{\sqrt{2\pi\Sigma}} \exp ^{- \left( \frac{(X-\mu)^T(X-\mu)}{2\S
 
 $$
 \begin{align}
-D_{KL}(P_1 \parallel P_2) &= \frac{1}{2} \left( \log\frac{∣Σ_2∣}{∣Σ_1\|}−d+tr(Σ_2^{-1}Σ_1)+(μ_2−μ_1)^TΣ_2^{-1}(μ_2−μ_1) \right)
+D_{KL}(P_1 \parallel P_2) &= \frac{1}{2} \left( \log\frac{∣Σ_2∣}{∣Σ_1 \vert }−d+tr(Σ_2^{-1}Σ_1)+(μ_2−μ_1)^TΣ_2^{-1}(μ_2−μ_1) \right)
 \end{align}
 $$
 
@@ -427,7 +427,7 @@ $$
 
 $$
 \begin{align}
-로그 항: & \log\frac{\|\sigma_t^2 I\|}{\|\sigma_t^2 I\|} = \log(1) = 0 \\\\
+로그 항: & \log\frac{ \vert \sigma_t^2 I \vert }{ \vert \sigma_t^2 I \vert } = \log(1) = 0 \\\\
 Trace 항: & \text{tr}((\sigma_t^2 I)^{-1}(\sigma_t^2 I)) = \text{tr}(I) = d
 \end{align}
 $$
@@ -448,7 +448,7 @@ $$
 
 
 
-벡터 내적 $v^T v$는 L2-norm의 제곱 $\\|v\\|^2$과 같으므로, 최종적으로 KL Divergence는 두 평균 벡터 간의 **제곱 거리(Squared Distance)**에 비례하는 형태로 정리됩니다.
+벡터 내적 $v^T v$는 L2-norm의 제곱 $ \vert v \vert ^2$과 같으므로, 최종적으로 KL Divergence는 두 평균 벡터 간의 **제곱 거리(Squared Distance)**에 비례하는 형태로 정리됩니다.
 
 $$
 \begin{align}
@@ -459,16 +459,16 @@ $$
 
 
 ### (8)수식의 의미
-* $x_0$에 t step noise 더한 이미지 $x_t$를 Neural Net에 줬을때, $q(x_{t-1})$예측, $=q(x_{t-1}\|x_t,x_0)$
+* $x_0$에 t step noise 더한 이미지 $x_t$를 Neural Net에 줬을때, $q(x_{t-1})$예측, $=q(x_{t-1} \vert x_t,x_0)$
 
-$$q(x_{t-1}\|x_t,x_0) = N(x_{t-1}; \tilde{\mu}_t(x_t,x_0), \tilde{\beta}_tI) \\ (6)$$
+$$q(x_{t-1} \vert x_t,x_0) = N(x_{t-1}; \tilde{\mu}_t(x_t,x_0), \tilde{\beta}_tI) \\ (6)$$
 
 $$
 \begin{align}
 L_{t−1} − C &=E_{x_0,\epsilon}\left[\frac{1}{2σ^2_t}\parallel\tilde{µ}_t \left(x_t(x_0,\epsilon),\frac{1}{\sqrt{\bar{α}_t}}(x_t(x_0,\epsilon)− \sqrt{1 − \bar{α}_t}\epsilon) \right) − µ_θ(x_t(x_0,\epsilon), t) \parallel^2 \right] \;\; (9) \\\\
 &= E_{x_0,\epsilon} \left[\frac{1}{2σ^2_t} \parallel \frac{1}{\sqrt{α_t}} \left(x_t(x_0,\epsilon) − \frac{β_t}{\sqrt{1 − \bar{α}_t}}\epsilon\right)− µ_θ(x_t(x_0,\epsilon),t) \parallel^2 \right] \;\; (10) \\\\
 \mu_\theta(x_t, t) &= \tilde{\mu}_t\left(x_t, \frac{1}{\sqrt{\bar{\alpha}_t}}(x_t - \sqrt{1 - \bar{\alpha}_t}\epsilon_\theta(x_t)) \right) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon_\theta(x_t, t) \right) \;\; (11) \\\\
-&= E_{x_0, \epsilon}\left[ \frac{\beta^2_t}{2\sigma^2_t\alpha_t(1-\bar{\alpha}_t)} \left\\| \epsilon - \epsilon_\theta(\sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon, t) \right\\|^2 \right] \;\; (12)
+&= E_{x_0, \epsilon}\left[ \frac{\beta^2_t}{2\sigma^2_t\alpha_t(1-\bar{\alpha}_t)} \left  \vert  \epsilon - \epsilon_\theta(\sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon, t) \right  \vert ^2 \right] \;\; (12)
 \end{align}
 $$
 
@@ -486,7 +486,7 @@ $$
 Loss 계산 방식을 추상적인 분포 q에서 구체적인 변수인 $x_0$와 ε에 대한 계산으로 명시적으로 바꾸는 과정입니다.
 
 * 기댓값(E)의 대상을 변경 (재매개변수화)
-  * 식 (8)의 $E_q$는 $q(x_t\|x_0)$ 분포, 즉 $x_0$에서 $x_t$를 만드는 과정 전체에 대한 기댓값을 의미합니다.
+  * 식 (8)의 $E_q$는 $q(x_t \vert x_0)$ 분포, 즉 $x_0$에서 $x_t$를 만드는 과정 전체에 대한 기댓값을 의미합니다.
   * 식 (9)의 $E_{x_0, ε}$는 이 과정을 더 구체적으로 풀어쓴 것입니다
 
 * $x_t$를 $x_t(x_0,ε)$로 명시
@@ -553,9 +553,9 @@ $$ L \propto \parallel \frac{1}{\sqrt{α_t}} \left(x_t−\frac{β_t}{\sqrt{1−\
 
 $$
 \begin{align}
-L & \propto \left\| \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon \right) - \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon_\theta \right) \right\|^2 \\
-& = \left\| \frac{\beta_t}{\sqrt{\alpha_t}\sqrt{1-\bar{\alpha}_t}}(\epsilon_\theta - \epsilon) \right\|^2 \\
-& = \frac{\beta_t^2}{\alpha_t(1-\bar{\alpha}_t)} \| \epsilon - \epsilon_\theta \|^2
+L & \propto \left \vert  \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon \right) - \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon_\theta \right) \right \vert ^2 \\
+& = \left \vert  \frac{\beta_t}{\sqrt{\alpha_t}\sqrt{1-\bar{\alpha}_t}}(\epsilon_\theta - \epsilon) \right \vert ^2 \\
+& = \frac{\beta_t^2}{\alpha_t(1-\bar{\alpha}_t)}  \vert  \epsilon - \epsilon_\theta  \vert ^2
 \end{align}
 $$
 
@@ -569,15 +569,15 @@ $$
 \begin{align}
 &= E_{x_0,\epsilon} \left[\frac{1}{2σ^2_t} \parallel \frac{1}{\sqrt{α_t}} \left(x_t(x_0,\epsilon) − \frac{β_t}{\sqrt{1 − \bar{α}_t}}\epsilon\right)− µ_θ(x_t(x_0,\epsilon),t) \parallel^2 \right] \;\; (10) \\\\
 \mu_\theta(x_t, t) &= \tilde{\mu}_t\left(x_t, \frac{1}{\sqrt{\bar{\alpha}_t}}(x_t - \sqrt{1 - \bar{\alpha}_t}\epsilon_\theta(x_t)) \right) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon_\theta(x_t, t) \right) \;\; (11) \\\\
-&= E_{x_0, \epsilon}\left[ \frac{\beta^2_t}{2\sigma^2_t\alpha_t(1-\bar{\alpha}_t)} \left\| \epsilon - \epsilon_\theta(x_t, t) \right\|^2 \right] \;\; (11-1) \\\\
-&= E_{x_0, \epsilon}\left[ \frac{\beta^2_t}{2\sigma^2_t\alpha_t(1-\bar{\alpha}_t)} \left\| \epsilon - \epsilon_\theta(\sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon, t) \right\|^2 \right] \;\; (12)
+&= E_{x_0, \epsilon}\left[ \frac{\beta^2_t}{2\sigma^2_t\alpha_t(1-\bar{\alpha}_t)} \left \vert  \epsilon - \epsilon_\theta(x_t, t) \right \vert ^2 \right] \;\; (11-1) \\\\
+&= E_{x_0, \epsilon}\left[ \frac{\beta^2_t}{2\sigma^2_t\alpha_t(1-\bar{\alpha}_t)} \left \vert  \epsilon - \epsilon_\theta(\sqrt{\bar{\alpha}_t}x_0 + \sqrt{1-\bar{\alpha}_t}\epsilon, t) \right \vert ^2 \right] \;\; (12)
 \end{align}
 $$
 
 ### $L_0$ 이해하기
 
-$$L=E_q[D_{KL}​(q(x_T\|x_0​)\parallel p(x_T))+\displaystyle\sum_{t>1}D_{KL}​(q(x_{t−1}​\|x_t​,x_0)\parallel p_θ(x_{t−1}\|x_t))−\log p_θ(x_0\|x_1)] \\ (5) $$
-$$L_0 = \log p_θ(x_0\|x_1)$$
+$$L=E_q[D_{KL}​(q(x_T \vert x_0​)\parallel p(x_T))+\displaystyle\sum_{t>1}D_{KL}​(q(x_{t−1}​ \vert x_t​,x_0)\parallel p_θ(x_{t−1} \vert x_t))−\log p_θ(x_0 \vert x_1)] \\ (5) $$
+$$L_0 = \log p_θ(x_0 \vert x_1)$$
 
 <img width="1000" height="30" alt="image" src="https://github.com/user-attachments/assets/efb3cb98-11dc-47a0-895e-0881f902bc52" />
 
@@ -665,24 +665,24 @@ $$L=E_q​[−logp_θ​(x_0)]≤E_q​[−log\frac{p_θ(x_{0:T})​}{q(x_{1:T�
 
 * 이를 아래와 같이 재 정립
 
-$$L=E_q[D_{KL}​(q(x_T\|x_0​)\parallel p(x_T))+\displaystyle\sum_{t>1}D_{KL}​(q(x_{t−1}​\|x_t​,x_0)\parallel p_θ(x_{t−1}\|x_t))−\log p_θ(x_0\|x_1)]$$
+$$L=E_q[D_{KL}​(q(x_T \vert x_0​)\parallel p(x_T))+\displaystyle\sum_{t>1}D_{KL}​(q(x_{t−1}​ \vert x_t​,x_0)\parallel p_θ(x_{t−1} \vert x_t))−\log p_θ(x_0 \vert x_1)]$$
 
 * 전송률 (Rate)
   * $L_T=D_{KL}(q(x_T∣x_0 )∣∣p(x_T))$: 이는 초기 잠재 변수 $x_T$ 를 전송하는 데 필요한 비트 수를 나타냅니다.
     * $x_0$에서 확산 과정을 거쳐 얻은 $x_T$의 분포이고, $p(x_T)$는 사전에 정의된 (보통 표준 정규) 분포입니다.
     * 이 값이 낮을수록 모델이 $x_T$를 사전 분포에 가깝게 만들 수 있어 효율적인 전송이 가능합니다.
     * DDPM에서는 $L_T≈0$이 되도록 $β_t$ 스케줄을 설정하여, $x_T$가 $x_0$와 거의 상호 정보가 없도록 만듭니다.
-  * $\displaystyle\sum_{t>1}D_{KL}(q(x_{t−1}\|x_t,x_0)∣∣p_θ(x_{t−1} ∣x_t))$
+  * $\displaystyle\sum_{t>1}D_{KL}(q(x_{t−1} \vert x_t,x_0)∣∣p_θ(x_{t−1} ∣x_t))$
     * 이는 역방향 과정에서 각 스텝 t마다 $x_{t-1}$을 전송하는 데 필요한 추가적인 비트 수를 나타냅니다.
-    * $q(x_{t-1}\|x_t,x_0)$는 정방향 과정의 사후 분포(posterior)이며,
-    * $p_{\theta}(x_{t-1}\|x_t)$는 모델이 학습한 역방향 과정의 전이 분포입니다.
+    * $q(x_{t-1} \vert x_t,x_0)$는 정방향 과정의 사후 분포(posterior)이며,
+    * $p_{\theta}(x_{t-1} \vert x_t)$는 모델이 학습한 역방향 과정의 전이 분포입니다.
     * 이 KL 발산은 모델이 실제 전이 분포를 얼마나 잘 근사하는지를 측정하며, 이 값이 낮을수록 더 효율적인 디코딩이 가능합니다.
 
 
 * 왜곡 (Distortion)
   * $L_0$를 왜곡으로 간주
     * $−logp_θ(x_0∣x_1)$: 이는 $x_1$로부터 최종 데이터 $x_0$를 복원하는 과정의 손실을 나타냅니다.
-    * DDPM에서는 $x_0$가 이산적인 이미지 픽셀이므로, $p_{\theta}(x_0\|x_1)$는 $x_1$에 조건화된 $x_0$의 이산 디코더로 정의
+    * DDPM에서는 $x_0$가 이산적인 이미지 픽셀이므로, $p_{\theta}(x_0 \vert x_1)$는 $x_1$에 조건화된 $x_0$의 이산 디코더로 정의
     * 이 값이 낮을수록 복원된 $x_0$가 원본에 가깝다는 것을 의미
 
 * 왜곡 - 전송률 플롯 (Rate-Distortion Plot)
@@ -773,16 +773,16 @@ DDPM 논문에서 내부보간법은 다음과 같은 단계를 통해 이루어
 예를 들어 확률 변수 $X_1,X_2, ... , X_n$ 이 있다고 가정하면,
 일반적으로 이 확률변수들의 결합확률분포는 다음과 같이 계산할 수 있다.
 
-$$ P(X_1,X_2, ... , X_n) = P(X_1) \times P(X_2\|X_1) \times P(X_3\|X_2,X_1)\times  ...  \times P(X_n\|X_{n-1}, X_{n_2} , ... , X_1) $$
+$$ P(X_1,X_2, ... , X_n) = P(X_1) \times P(X_2 \vert X_1) \times P(X_3 \vert X_2,X_1)\times  ...  \times P(X_n \vert X_{n-1}, X_{n_2} , ... , X_1) $$
  
 하지만 마르코프 성질을 이용하면 위 보다 더 단순한 계산을 통해 결합확률분포를 구할 수 있다.
 
-$$ P(X_n\|X_{n-1}, X_{n_2} , ... , X_1) = P(X_{t+1}\|X_t) $$
+$$ P(X_n \vert X_{n-1}, X_{n_2} , ... , X_1) = P(X_{t+1} \vert X_t) $$
  
 
 만약 어떠한 상태의 시점이고, 확률분포가 마르코프 성질을 따른다면 
 
-$$ P(X_1,X_2, ... , X_n) = P(X_1) \times P(X_2\|X_1) \times P(X_3\|X_2)\times  ...  \times P(X_n\|X_{n-1}) $$
+$$ P(X_1,X_2, ... , X_n) = P(X_1) \times P(X_2 \vert X_1) \times P(X_3 \vert X_2)\times  ...  \times P(X_n \vert X_{n-1}) $$
 
 단순화 할 수 있고 일반화를 적용하면 이전에 결합확률분포의 계산을 다음과 같이 단순화 가능하다.
 
@@ -804,16 +804,16 @@ $$ P(X_1,X_2, ... , X_n) = P(X_1) \times P(X_2\|X_1) \times P(X_3\|X_2)\times  .
 https://modulabs.co.kr/blog/variational-inference-intro
 
 * $p(x)$ 확률분포, 은닉변수 $Z$, 양변에 log를 씌우면 Jensen 부등식을 통해 Lower Bound 표현
-* $q(Z\|\lambda)$ 에서 $\lambda$ 는 Variational Parameter, $\lambda$가 $q$에 작동한다는 표현
+* $q(Z \vert \lambda)$ 에서 $\lambda$ 는 Variational Parameter, $\lambda$가 $q$에 작동한다는 표현
 * $KL(p \parallel q) = \sum_Z p(Z) log p(Z) / q(Z)$ 로 정의, 두 확률분포의 차이를 계산하는 함수
 
 $logp(X) = log(\displaystyle\sum_Z p(X,Z))$
 
-$\ \ \ \ \ \ \ \ \ \ \ \ \  = log(\displaystyle\sum_Z p(X,Z)\frac{q(Z\|\lambda)}{q(Z\|\lambda)})$
+$\ \ \ \ \ \ \ \ \ \ \ \ \  = log(\displaystyle\sum_Z p(X,Z)\frac{q(Z \vert \lambda)}{q(Z \vert \lambda)})$
 
-$\ \ \ \ \ \ \ \ \ \ \ \ \  = log(\displaystyle\sum_Z q(Z\|\lambda)\frac{p(X,Z)}{q(Z\|\lambda)})$
+$\ \ \ \ \ \ \ \ \ \ \ \ \  = log(\displaystyle\sum_Z q(Z \vert \lambda)\frac{p(X,Z)}{q(Z \vert \lambda)})$
 
-$\ \ \ \ \ \ \ \ \ \ \ \ \  \ge \displaystyle\sum_Z q(Z\|\lambda)log\frac{p(X,Z)}{p(Z\|\lambda)}$
+$\ \ \ \ \ \ \ \ \ \ \ \ \  \ge \displaystyle\sum_Z q(Z \vert \lambda)log\frac{p(X,Z)}{p(Z \vert \lambda)}$
    
 
 
