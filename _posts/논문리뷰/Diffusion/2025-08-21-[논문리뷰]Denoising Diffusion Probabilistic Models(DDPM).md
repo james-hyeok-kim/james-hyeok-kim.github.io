@@ -98,7 +98,7 @@ $$log\ 𝑝_𝜃(𝑥)≥𝐸_{𝑞_𝜙(𝑧∣𝑥)}[log⁡𝑝_𝜃(𝑥∣�
 ---
 
 ## Forward Process (Diffusion Process) $q$
-* $q(x_{1:T}\vertx_0) := \displaystyle\prod_{t=1}^{T}q(x_t \vert x_{t-1})$
+* $q(x_{1:T} \vert x_0) := \displaystyle\prod_{t=1}^{T}q(x_t \vert x_{t-1})$
 * $q(x_t \vert x_{t-1}) := \mathcal{N}(x_t;\sqrt{1- \beta_{t}}x_{t-1},\beta_{t}I)$
 * 작은 가우시안 노이즈를 T단계에 걸쳐 점차 추가
 * Variance(Noise) Schedule $\beta_1, ... , \beta_T:$
@@ -215,7 +215,7 @@ L & = E_q \left[ − \log \frac{p_θ(x_{0:T})}{q(x_{1:T}  \vert x_0)} \right] \;
 \end{align}
 $$
 
-<img width="1117" height="141" alt="image" src="https://github.com/user-attachments/assets/56681e35-47f1-4217-bb4b-a12d7e5a03be" />
+<img width="1000" height="120" alt="image" src="https://github.com/user-attachments/assets/56681e35-47f1-4217-bb4b-a12d7e5a03be" />
 
 Loss를 통해 P를 어떻게 구하는지는 알았는데, q는 어떻게 구할건지
 
@@ -223,7 +223,7 @@ Loss를 통해 P를 어떻게 구하는지는 알았는데, q는 어떻게 구�
 
 ### $p$가 닮아야할 확률분포 $q$에 대해서 이해하기
 
-$$q(x_{t-1} \vert x_t,x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t,x_0), \tilde{\beta}_tI) \\ (6)$$
+$$q(x_{t-1} \vert x_t,x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t,x_0), \tilde{\beta}_tI) \;\; (6)$$
 
 $$
 \begin{align}
@@ -247,7 +247,7 @@ q(x_{t−1}∣x_t,x_0)&=\frac{q(x_{t−1}, x_t, x_0)}{q(x_t,x_0)} \cdot \frac{q(
 q(x_{t−1}∣x_t,x_0)&=\frac{q(x_{t−1}  \vert  x_t, x_0)}{q(x_t,x_0)} \cdot q(x_{t-1}, x_0) \\\\
 q(x_{t−1}∣x_t,x_0)&=\frac{q(x_{t−1}  \vert  x_t, x_0)}{q(x_t,x_0)} \cdot q(x_{t-1}, x_0) \cdot \frac{q(x_0)}{q(x_0)}  \\\\
 q(x_{t−1}∣x_t,x_0)&=q(x_{t−1}  \vert  x_t, x_0) \cdot \frac{q(x_{t-1}  \vert  x_0)}{q(x_t  \vert x_0)} \\\\
-&* Markov Chain \\\\
+&* Markov \;\; Chain \\\\
 q(x_{t−1}∣x_t,x_0)&=q(x_t∣x_{t−1})\frac{q(x_{t−1}∣x_0)}{q(x_t∣x_0)}
 \end{align}
 $$
@@ -295,7 +295,7 @@ $$
 
 * 다변량 정규분포(multivariate normal distribution) 란 말 그대로 복수개의 확률 변수가 존재하고 그것을 한번에 모형화 한 것을 말한다.
 
-<img width="842" height="637" alt="image" src="https://github.com/user-attachments/assets/ad7fd158-351d-4deb-9033-593106d57022" />
+<img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/ad7fd158-351d-4deb-9033-593106d57022" />
 
 
 #### 정규분포 평균: $\mu$ , 표준편차: $\sigma$ 
@@ -585,7 +585,7 @@ Channel 당 8bit 으로 mapping {0,1,...,255}
 
 마지막 Losss는 정수가 되어야해서 식 (13)으로 구해야 하는데, 논문에서는 굳이 따로 안써도 된다고 함, t=1대입해서 그냥 구해도 된다.
 
-<img width="1000" height="190" alt="image" src="https://github.com/user-attachments/assets/9740aaec-da70-4f88-a5f7-470022bf42d7" />
+<img width="1000" height="150" alt="image" src="https://github.com/user-attachments/assets/9740aaec-da70-4f88-a5f7-470022bf42d7" />
 
 
 
@@ -801,7 +801,7 @@ $$ P(X_1,X_2, ... , X_n) = P(X_1) \times P(X_2 \vert X_1) \times P(X_3 \vert X_2
 
 
 ##### Variational Inference 식 유도
-https://modulabs.co.kr/blog/variational-inference-intro
+[Reference Link](https://modulabs.co.kr/blog/variational-inference-intro)
 
 * $p(x)$ 확률분포, 은닉변수 $Z$, 양변에 log를 씌우면 Jensen 부등식을 통해 Lower Bound 표현
 * $q(Z \vert \lambda)$ 에서 $\lambda$ 는 Variational Parameter, $\lambda$가 $q$에 작동한다는 표현
