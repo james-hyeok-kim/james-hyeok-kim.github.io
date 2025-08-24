@@ -20,12 +20,12 @@ author: James Kim
 * Chain을 사용하면 여러 구성 요소를 결합하여 하나의 종합적인 애플리케이션을 만들 수 있다. 여러 개의 체인을 결합하거나, 체인을 다른 구성요소와 결합하여 더 복잡한 체인을 만들 수도 있다.
 
 
-<img width="1579" height="606" alt="image" src="https://github.com/user-attachments/assets/fb46cc54-6fd2-4ef1-a4e0-49d16949da59" />
+<img width="1200" height="400" alt="image" src="https://github.com/user-attachments/assets/fb46cc54-6fd2-4ef1-a4e0-49d16949da59" />
 
 
 ## EcoSystem
 
-<img width="1246" height="1273" alt="image" src="https://github.com/user-attachments/assets/d8eec0bd-8330-42b2-89bf-eb1a16c7be3e" />
+<img width="1200" height="400" alt="image" src="https://github.com/user-attachments/assets/d8eec0bd-8330-42b2-89bf-eb1a16c7be3e" />
 
 LangChain Framwork는 여러 에코시스템으로 이루어져 있는데, 최근에는 개발과 운영, 그리고 배포까지 지원하는 Framwork로 계속 진화중인 것으로 보인다.
 
@@ -112,7 +112,7 @@ LangChain 서드파티 라이브러리를 보여주는 테이블
 
 * 그렇다면 언어 모델(LLM)이 최신 데이터를 필요로 하는 작업을 사용자는 요청할 수 없는걸까? 답은 그렇지 않다! Agent를 통해 이러한 작업을 요청 가능하게 해줄 수 있다.
 
-<img width="2187" height="1137" alt="image" src="https://github.com/user-attachments/assets/b6157ccd-a102-4555-96e6-8de29f6b5d01" />
+<img width="1200" height="400" alt="image" src="https://github.com/user-attachments/assets/b6157ccd-a102-4555-96e6-8de29f6b5d01" />
 
 
 주요 개념 Agent 와 동작원리
