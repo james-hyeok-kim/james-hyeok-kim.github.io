@@ -81,19 +81,19 @@ DDPM의 순방향 확산 과정과 역방향 생성 과정에 대한 수학적 �
 
 #### Forward Process (Diffusion Process) $q$
 
-* $q(x_{1:T}\|x_0) := \prod^T_{t=1}q(x_t\|x_{t−1}),\\ where \\ q(xt\|xt−1) := \mathcal{N} \left( \sqrt{\frac{\alpha_t}{\alpha_{t-1}}x_{t-1}}, \left(1 - \frac{α_t}{α_{t−1}} \right)I \right) \\ (3)$
+* $q(x_{1:T} \vert x_0) := \prod^T_{t=1}q(x_t \vert x_{t−1}),\\ where \\ q(xt \vert xt−1) := \mathcal{N} \left( \sqrt{\frac{\alpha_t}{\alpha_{t-1}}x_{t-1}}, \left(1 - \frac{α_t}{α_{t−1}} \right)I \right) \\ (3)$
 
 
 #### Reverse Process $p_{\theta}$
-* $q(x_t\|x_0) := \int q(x_{1:t}\|x_0)dx_{1:(t−1)} = \mathcal{N} (x_t;\sqrt{α_t}x_0,(1 − α_t)I)$
+* $q(x_t \vert x_0) := \int q(x_{1:t} \vert x_0)dx_{1:(t−1)} = \mathcal{N} (x_t;\sqrt{α_t}x_0,(1 − α_t)I)$
 * $x_t =\sqrt{α_t}x_0 + \sqrt{1 − α_t}\epsilon, \\ where \\ \epsilon \sim \mathcal{N} (0, I) \\ (4)$
 
 $$
 \begin{align}
-p_{\theta}(x_{t-1}\|x_t) = 
+p_{\theta}(x_{t-1} \vert x_t) = 
 \begin{cases} 
 N(f_{\theta}^{(1)}(x_1), \sigma_1^2I) & \text{if } t=1 \\
-q_{\sigma}(x_{t-1}\|x_t, f_{\theta}^{(t)}(x_t)) & \text{otherwise}
+q_{\sigma}(x_{t-1} \vert x_t, f_{\theta}^{(t)}(x_t)) & \text{otherwise}
 \end{cases}
 \end{align}
 $$
@@ -117,11 +117,11 @@ $$
 
 * $x_t =\sqrt{α_t}x_0 + \sqrt{1 − α_t}\epsilon, \\ where \\ \epsilon \sim \mathcal{N} (0, I) \\ (4)$
 
-* $q_\sigma(x_t\|x_0) := \mathcal{N}(\sqrt{α_t}x_0,(1 − α_t)I)$ 의 분포를 따를 때,
+* $q_\sigma(x_t \vert x_0) := \mathcal{N}(\sqrt{α_t}x_0,(1 − α_t)I)$ 의 분포를 따를 때,
 
 (4)를 바탕으로 $x_{t-1}$ 예측하기
 
-$$q_σ(x_{t−1}∣x_t,x_0)=\mathcal{N}(\sqrt{α_{t−1}}x_0 +  \sqrt{1−α_{t−1}−σ_t^2} \cdot \frac{x_t− \sqrt{α_t} x_0}{\sqrt{1−α_t}},σ_t^2I) \\ (7)$$
+$$q_σ(x_{t−1}∣x_t,x_0)=\mathcal{N}(\sqrt{α_{t−1}}x_0 +  \sqrt{1−α_{t−1}−σ_t^2} \cdot \frac{x_t− \sqrt{α_t} x_0}{\sqrt{1−α_t}},σ_t^2I) \;\; (7)$$
 
 
 * $\sigma_t$ : 확률을 조절하는 새로운 파라미터
@@ -129,16 +129,16 @@ $$q_σ(x_{t−1}∣x_t,x_0)=\mathcal{N}(\sqrt{α_{t−1}}x_0 +  \sqrt{1−α_{t�
 
 ##### (7) 유도과정
 
-* $q_\sigma(x_t\|x_0) = \mathcal{N}(\sqrt{α_t}x_0,(1 − α_t)I)$
-* $q_\sigma(x_{t-1}\|x_0) = \mathcal{N}(\sqrt{\alpha_{t-1}}x_0, (1-\alpha_{t-1}I)$
-  * $p(x) = \mathcal{N}(x\|\mu,\Lambda^{-1})$
+* $q_\sigma(x_t \vert x_0) = \mathcal{N}(\sqrt{α_t}x_0,(1 − α_t)I)$
+* $q_\sigma(x_{t-1} \vert x_0) = \mathcal{N}(\sqrt{\alpha_{t-1}}x_0, (1-\alpha_{t-1}I)$
+  * $p(x) = \mathcal{N}(x \vert \mu,\Lambda^{-1})$
   * $\Lambda : Lambda$
-* $p(y\|x) = \mathcal{N}(y\|Ax + b, L^{-1})$
+* $p(y \vert x) = \mathcal{N}(y \vert Ax + b, L^{-1})$
   * y가 x에 대한 선형 변환에 가우시안 노이즈가 더해진 형태 $y=Ax+b+\epsilon$
   * 이때 노이즈 $\epsilon$은 평균 0, 공분산 $L^{-1}$인 가우시안 분포 $\epsilon \sim \mathcal{N}(0, L^{-1})$
-* $p(y) = \mathcal{N}(y\|A\mu + b, L^{-1}+A\Lambda^{-1}A^{T})$
+* $p(y) = \mathcal{N}(y \vert A\mu + b, L^{-1}+A\Lambda^{-1}A^{T})$
 
-$p(y\|x) = \mathcal{N}(y\|Ax + b, L^{-1})$ 유도(공분산의 성질을 이용하여 y의 공분산을 계산)
+$p(y \vert x) = \mathcal{N}(y \vert Ax + b, L^{-1})$ 유도(공분산의 성질을 이용하여 y의 공분산을 계산)
 
 $$
 \begin{align}
@@ -166,12 +166,12 @@ p(y)=\mathcal{N}(y∣\underbrace{Aμ+b}_{평균}, \underbrace{L^{−1}+AΛ^{−1
 \end{align}
 $$
 
-* $p(y) \leftarrow q_\sigma(x_{t-1}\|x_0)$
-* $p(x) = \mathcal{N}(x\|\mu, \Lambda^{-1})$
-* $p(x) \leftarrow q_\sigma(x_t\|x_0) = \mathcal{N}(\sqrt{\alpha_t}x_0, (1-\alpha_t)I)$
-* $p(y\|x) = \mathcal{N}(y\|Ax+b,L^{-1})$
-* $p(y\|x) \leftarrow q_\sigma(x_{t-1}\|x_t,x_0) = \mathcal{N} \left(\sqrt{a_{t-1}}x_0  + \sqrt{1-\alpha_{t-1}-\sigma^2_t} \cdot \frac{x_t - \sqrt{\alpha_t}x_0}{\sqrt{1-\alpha_t}} , \sigma_t^2 I \right)$
-* $q_\sigma(x_{t-1}\|x_0) = \mathcal{N}(y\|A\mu + b, L^{-1}+A\Lambda^{-1}A^T)$
+* $p(y) \leftarrow q_\sigma(x_{t-1} \vert x_0)$
+* $p(x) = \mathcal{N}(x \vert \mu, \Lambda^{-1})$
+* $p(x) \leftarrow q_\sigma(x_t \vert x_0) = \mathcal{N}(\sqrt{\alpha_t}x_0, (1-\alpha_t)I)$
+* $p(y \vert x) = \mathcal{N}(y \vert Ax+b,L^{-1})$
+* $p(y \vert x) \leftarrow q_\sigma(x_{t-1} \vert x_t,x_0) = \mathcal{N} \left(\sqrt{a_{t-1}}x_0  + \sqrt{1-\alpha_{t-1}-\sigma^2_t} \cdot \frac{x_t - \sqrt{\alpha_t}x_0}{\sqrt{1-\alpha_t}} , \sigma_t^2 I \right)$
+* $q_\sigma(x_{t-1} \vert x_0) = \mathcal{N}(y \vert A\mu + b, L^{-1}+A\Lambda^{-1}A^T)$
 
 
 $$
@@ -203,11 +203,11 @@ $$
 
 $$
 \begin{align}
-q_\sigma(x_t\|x_0) &= \mathcal{N}(\sqrt{\alpha_t}x0, (1-\alpha_t)I) \\\\
-q_\sigma(x_{t-1}\|x_0) &= \mathcal{N}(\sqrt{\alpha_{t-1}}x_0,(1-\alpha_{t-1})I) \\\\
+q_\sigma(x_t \vert x_0) &= \mathcal{N}(\sqrt{\alpha_t}x0, (1-\alpha_t)I) \\\\
+q_\sigma(x_{t-1} \vert x_0) &= \mathcal{N}(\sqrt{\alpha_{t-1}}x_0,(1-\alpha_{t-1})I) \\\\
 & 위에서 정의된 식 (DDPM) \\\\
-q_\sigma(x_{t-1}\|x_t,x_0) &= \mathcal{N}(x_{t-1}; \mu_q = A_tx_t+B_tx_0,\sigma^2_{*t}I) \;\; 로 정의 \\\\
-p(y) &= \mathcal{N}(y\|A\mu + b, L^{-1}+A\Lambda^{-1}A^{T}) \;\; 해당식을 활용하면 \\\\
+q_\sigma(x_{t-1} \vert x_t,x_0) &= \mathcal{N}(x_{t-1}; \mu_q = A_tx_t+B_tx_0,\sigma^2_{*t}I) \;\; 로 정의 \\\\
+p(y) &= \mathcal{N}(y \vert A\mu + b, L^{-1}+A\Lambda^{-1}A^{T}) \;\; 해당식을 활용하면 \\\\
 \mu &= \sqrt{\alpha_t}x_0 \\\\
 \Lambda^{-1} &= (1-\alpha_t)I \\\\
 A &= \sqrt{1-\alpha_{t-1}-\sigma^2_t} \cdot \frac{1}{\sqrt{1-\alpha_t}} \\\\
@@ -215,7 +215,7 @@ A &= \sqrt{1-\alpha_{t-1}-\sigma^2_t} \cdot \frac{1}{\sqrt{1-\alpha_t}} \\\\
 b &= \sqrt{\alpha_{t-1}}x_0 - \sqrt{1-\alpha_{t-1}-\sigma_t^2} \cdot \frac{\sqrt{\alpha_t}x_0}{\sqrt{1-\alpha_t}} \\\\
 b &= B_tx_0 \\\\
 L^{-1} &= \sigma^2_tI \\\\
-q_\sigma(x_{t-1}\|x_0) &= \mathcal{N}(x_{t-1};\mu_q = \frac{\sqrt{1-\alpha_{t-1}-\sigma^2_t}}{\sqrt{1-\alpha_t}}\sqrt{\alpha_t}x_t + (\sqrt{\alpha_{t-1}} - \sqrt{1-\alpha_{t-1}-\sigma_t^2} \cdot \frac{\sqrt{\alpha_t}}{\sqrt{1-\alpha_t}})x_0, \sigma_{*t}^2I) \\\\
+q_\sigma(x_{t-1} \vert x_0) &= \mathcal{N}(x_{t-1};\mu_q = \frac{\sqrt{1-\alpha_{t-1}-\sigma^2_t}}{\sqrt{1-\alpha_t}}\sqrt{\alpha_t}x_t + (\sqrt{\alpha_{t-1}} - \sqrt{1-\alpha_{t-1}-\sigma_t^2} \cdot \frac{\sqrt{\alpha_t}}{\sqrt{1-\alpha_t}})x_0, \sigma_{*t}^2I) \\\\
 &= \mathcal{N}(x_{t-1};\mu_q = \sqrt{α_{t−1}}x_0 +  \sqrt{1−α_{t−1}−σ_t^2} \cdot \frac{x_t− \sqrt{α_t} x_0}{\sqrt{1−α_t}},σ_{*t}^2I) \;\; (7)
 \end{align}
 $$
@@ -223,7 +223,7 @@ $$
 
 * Trained DDPM을 DDIM non-markovian에서 사용 가능 (retrain x )
 
-$q_\sigma(x_t\|x_{t-1},x_0) \neq q_\sigma(x_t\|x_{t-1})$
+$q_\sigma(x_t \vert x_{t-1},x_0) \neq q_\sigma(x_t \vert x_{t-1})$
 
 #### Sampling
 
@@ -238,12 +238,12 @@ $q_\sigma(x_t\|x_{t-1},x_0) \neq q_\sigma(x_t\|x_{t-1})$
 
 $$
 \begin{align}
-q_\sigma(x_{t-1}\|x_0) &= \mathcal{N}(\sqrt{α_{t−1}}x_0 +  \sqrt{1−α_{t−1}−σ_t^2} \cdot \frac{x_t− \sqrt{α_t} x_0}{\sqrt{1−α_t}},σ_{*t}^2I) \;\; (7) \\\\
-q_\sigma(x_t\|x_0) &= \mathcal{N}(\sqrt{\alpha_t}x_0, (1-\alpha_t)I) \\\\
+q_\sigma(x_{t-1} \vert x_0) &= \mathcal{N}(\sqrt{α_{t−1}}x_0 +  \sqrt{1−α_{t−1}−σ_t^2} \cdot \frac{x_t− \sqrt{α_t} x_0}{\sqrt{1−α_t}},σ_{*t}^2I) \;\; (7) \\\\
+q_\sigma(x_t \vert x_0) &= \mathcal{N}(\sqrt{\alpha_t}x_0, (1-\alpha_t)I) \\\\
 x_t &= \sqrt{\alpha_t}x_0 + \sqrt{1-\alpha_t}\epsilon \\\\
 x_0 &= \frac{x_t - \sqrt{1-\alpha_t}\epsilon}{\sqrt{\alpha_t}} \\\\
-q_\sigma(x_{t-1}\|x_t,x_0) &= \mathcal{N} \left(\sqrt{\alpha_{t-1}}\frac{x_t-\sqrt{1-\alpha_t}\epsilon}{\sqrt{\alpha_t}} + \sqrt{1-\alpha_{t-1}-\sigma^2_t}\epsilon,\sigma_t^2I \right) \\\\
-p_\theta(x_{t-1}\|x_t) &= \mathcal{N} \left(\sqrt{\alpha_{t-1}}\frac{x_t-\sqrt{1-\alpha_t}\epsilon_\theta}{\sqrt{\alpha_t}} + \sqrt{1-\alpha_{t-1}-\sigma^2_t}\epsilon_\theta,\sigma_t^2I \right) \\\\
+q_\sigma(x_{t-1} \vert x_t,x_0) &= \mathcal{N} \left(\sqrt{\alpha_{t-1}}\frac{x_t-\sqrt{1-\alpha_t}\epsilon}{\sqrt{\alpha_t}} + \sqrt{1-\alpha_{t-1}-\sigma^2_t}\epsilon,\sigma_t^2I \right) \\\\
+p_\theta(x_{t-1} \vert x_t) &= \mathcal{N} \left(\sqrt{\alpha_{t-1}}\frac{x_t-\sqrt{1-\alpha_t}\epsilon_\theta}{\sqrt{\alpha_t}} + \sqrt{1-\alpha_{t-1}-\sigma^2_t}\epsilon_\theta,\sigma_t^2I \right) \\\\
 x_{t-1} &= \sqrt{\alpha_{t-1}} \left(\frac{x_t-\sqrt{1-\alpha_t}\epsilon_\theta^{(t)}(x_t)}{\sqrt{\alpha_t}} \right) + \sqrt{1-\alpha_{t-1}-\sigma_t^2}\cdot \epsilon_\theta^{(t)}(x_t)+\sigma_t\epsilon_t \;\; (Reparameterization - DDIM) \\\\
 x_{t-1} &= \frac{x_t}{\sqrt{\alpha_t}} - \frac{1-\alpha_t}{(\sqrt{1-\alpha_t})\sqrt{\alpha_t}}\epsilon_\theta^{(t)}(x_t) + \sigma_t\epsilon_t \;\; DDPM \; Sampling \; step \; (Comparison) \\\\
 \end{align}
@@ -307,7 +307,7 @@ $$
 
 *  $\sigma_t^2$, DDPM = DDIM
 
-$$\therefore q_\sigma(x_t\|x_{t-1},x_0) = q_\sigma(x_t\|x_{t-1})$$
+$$\therefore q_\sigma(x_t \vert x_{t-1},x_0) = q_\sigma(x_t \vert x_{t-1})$$
 
 DDPM Posterior와 같은 분산으로 Non-Markovian process(DDIM)이 Markovian forward prcess(DDPM)로 일반화, DDPM과 같아진다
 
@@ -315,21 +315,21 @@ DDPM Posterior와 같은 분산으로 Non-Markovian process(DDIM)이 Markovian f
 
 $$
 \begin{align}
-q_{\sigma}(x_{t-1}\|x_0) &= \mathcal{N}(\sqrt{\alpha_{t-1}}x_0 + \sqrt{1-\alpha_{t-1}-\sigma_t^2} \cdot \frac{x_t- \sqrt{\alpha_t} x_0}{\sqrt{1-\alpha_t}}, \sigma_{t}^2 I) \;\; \text{(7) DDIM} \\\\
-q(x_{t-1}\|x_0) &= \mathcal{N}(\sqrt{\alpha_{t-1}}x_0, (1-\alpha_{t-1})I) \;\; \text{DDPM} \\\\
-q_{\sigma,\tau} (x_{1:T}\|x_0) &= q_{\sigma,\tau}(x_{\tau_S}\|x_0) \prod^S_{i=1}q_{\sigma,\tau} (x_{\tau_{i-1}}\|x_{\tau_i}, x_0) \prod_{t\in\bar{\tau}}q_{\sigma,\tau} (x_t\|x_0) \;\; \text{(52)} \\\\
+q_{\sigma}(x_{t-1} \vert x_0) &= \mathcal{N}(\sqrt{\alpha_{t-1}}x_0 + \sqrt{1-\alpha_{t-1}-\sigma_t^2} \cdot \frac{x_t- \sqrt{\alpha_t} x_0}{\sqrt{1-\alpha_t}}, \sigma_{t}^2 I) \;\; \text{(7) DDIM} \\\\
+q(x_{t-1} \vert x_0) &= \mathcal{N}(\sqrt{\alpha_{t-1}}x_0, (1-\alpha_{t-1})I) \;\; \text{DDPM} \\\\
+q_{\sigma,\tau} (x_{1:T} \vert x_0) &= q_{\sigma,\tau}(x_{\tau_S} \vert x_0) \prod^S_{i=1}q_{\sigma,\tau} (x_{\tau_{i-1}} \vert x_{\tau_i}, x_0) \prod_{t\in\bar{\tau}}q_{\sigma,\tau} (x_t \vert x_0) \;\; \text{(52)} \\\\
 & \tau \text{ is a sub-sequence of } [1, \dots, T] \text{ of length S with } \tau_S = T, \{x_{\tau_1}, \dots, x_{\tau_s}\} \\\\
 & \bar{\tau} := \{1, \dots, T\} \setminus \tau \\\\
-q_{\sigma,\tau}(x_t\|x_0) &= \mathcal{N}(\sqrt{\bar{\alpha}_t}x_0,(1-\bar{\alpha}_t)I) \quad \forall t \in \bar{\tau} \cup \{T\} \\\\
-q_{\sigma,\tau}(x_{\tau_i}\|x_0) &= \mathcal{N}(\sqrt{\alpha_{\tau_i}}x_0, (1-\alpha_{\tau_i})I) \quad \forall i \in [S] \;\;(54) \\\\
-q_{\sigma,\tau}(x_{\tau_{i-1}}\|x_{\tau_i}, x_0) &= \mathcal{N}\left(\sqrt{\alpha_{\tau_{i-1}}}x_0 + \sqrt{1-\alpha_{\tau_{i-1}}-\sigma_{\tau_i}^2} \cdot \frac{x_{\tau_i} - \sqrt{\alpha_{\tau_i}} x_0}{\sqrt{1-\alpha_{\tau_i}}}, \sigma_{\tau_i}^2 I\right) \quad \forall i \in [S] \;\; \text{(7) DDIM} \\\\
+q_{\sigma,\tau}(x_t \vert x_0) &= \mathcal{N}(\sqrt{\bar{\alpha}_t}x_0,(1-\bar{\alpha}_t)I) \quad \forall t \in \bar{\tau} \cup \{T\} \\\\
+q_{\sigma,\tau}(x_{\tau_i} \vert x_0) &= \mathcal{N}(\sqrt{\alpha_{\tau_i}}x_0, (1-\alpha_{\tau_i})I) \quad \forall i \in [S] \;\;(54) \\\\
+q_{\sigma,\tau}(x_{\tau_{i-1}} \vert x_{\tau_i}, x_0) &= \mathcal{N}\left(\sqrt{\alpha_{\tau_{i-1}}}x_0 + \sqrt{1-\alpha_{\tau_{i-1}}-\sigma_{\tau_i}^2} \cdot \frac{x_{\tau_i} - \sqrt{\alpha_{\tau_i}} x_0}{\sqrt{1-\alpha_{\tau_i}}}, \sigma_{\tau_i}^2 I\right) \quad \forall i \in [S] \;\; \text{(7) DDIM} \\\\
 \end{align}
 $$
 
 $$
 \begin{align}
 & p_{\theta}(x_{0:T}) \text{"는 가속 샘플링을 위한 생성과정(Generative Process)를 수학적으로 정의"} \\\\
-p_{\theta}(x_{0:T}) &:= \underbrace{p_{\theta}(x_T)\prod^S_{i=1}p^{(\tau_i)}_{\theta}(x_{\tau_{i-1}}\|x_{\tau_i})}_{\text{"use to produce samples"}} \times \underbrace{\prod_{t \in \bar{\tau}}p^{(t)}_{\theta}(x_0\|x_t)}_{\text{"in variational objective"}} \;\; (55) \\\\
+p_{\theta}(x_{0:T}) &:= \underbrace{p_{\theta}(x_T)\prod^S_{i=1}p^{(\tau_i)}_{\theta}(x_{\tau_{i-1}} \vert x_{\tau_i})}_{\text{"use to produce samples"}} \times \underbrace{\prod_{t \in \bar{\tau}}p^{(t)}_{\theta}(x_0 \vert x_t)}_{\text{"in variational objective"}} \;\; (55) \\\\
 &= p_\theta(x_T) \text{"사전 분포 (Prior Distribution)"} x \text{"Sampling Path"} x \text{"변분 목적 함수 (Variational Objective Term)"} \\\\
 \end{align}
 $$
@@ -425,20 +425,20 @@ $$
 \begin{align}
 L(\theta) &= E_{x\sim p_{data}} \left[\frac{1}{2}\parallel s_\theta (x) \parallel_2^2  +  \text{tr}(\nabla_x s_\theta(x)) \right]\\\\
 & q_\sigma(\tilde{x}) \rightarrow \text{Noise가 추가된 x의 q 확률 밀도함수} \\\\
-&q_\sigma(\tilde{x}) = \int q_\sigma(\tilde{x}\|x) p_{data}(x) dx \\\\
+&q_\sigma(\tilde{x}) = \int q_\sigma(\tilde{x} \vert x) p_{data}(x) dx \\\\
 &= \frac{1}{2}E_{\tilde{x} \sim q_{\sigma}} \left[ \parallel \nabla_{\tilde{x}}\log q_\sigma(\tilde{x}) - s_\theta(\tilde{x}) \parallel_2^2 \right] \\\\
 \end{align}
 $$
 
 
 ###  $∇_{x̃}log(q_σ(x̃))$를 계산하려면 여전히 $p_{data}$를 알아야 함. 즉, 또다시 계산 불가능한 문제
-* 핵심은 목표 스코어를 $∇_{\tilde{x}}log(q_σ(x̃))$에서 $∇_{\tilde{x}}log(q_σ(\tilde{x}\|x))$로 바꾼 것입니다.
+* 핵심은 목표 스코어를 $∇_{\tilde{x}}log(q_σ(x̃))$에서 $∇_{\tilde{x}}log(q_σ(\tilde{x} \vert x))$로 바꾼 것입니다.
 
-* 계산 가능한 목표 (✅): $q_σ(\tilde{x}\|x)$는 "깨끗한 데이터 x가 주어졌을 때, 노이즈 낀 데이터 $\tilde{x}$가 나올 확률"입니다. 이것은 우리가 직접 정의하는 간단한 가우시안 분포 $N(\tilde{x}\|x,σ²I)$입니다.
+* 계산 가능한 목표 (✅): $q_σ(\tilde{x} \vert x)$는 "깨끗한 데이터 x가 주어졌을 때, 노이즈 낀 데이터 $\tilde{x}$가 나올 확률"입니다. 이것은 우리가 직접 정의하는 간단한 가우시안 분포 $N(\tilde{x} \vert x,σ²I)$입니다.
 
-* 우리는 이 함수의 정확한 식을 알고 있기 때문에, 스코어 $∇_{\tilde{x}}log(q_σ(\tilde{x}\|x))$를 쉽게 계산할 수 있습니다. 그 결과가 바로 $-(\tilde{x}-x)/σ²$ 입니다.
+* 우리는 이 함수의 정확한 식을 알고 있기 때문에, 스코어 $∇_{\tilde{x}}log(q_σ(\tilde{x} \vert x))$를 쉽게 계산할 수 있습니다. 그 결과가 바로 $-(\tilde{x}-x)/σ²$ 입니다.
 
-###  $∇_{x̃}log(q_σ(x̃)) \rightarrow ∇_{x̃}log(q_σ(x̃\|x))$
+###  $∇_{x̃}log(q_σ(x̃)) \rightarrow ∇_{x̃}log(q_σ(x̃ \vert x))$
 
 $$∇_\tilde{x} log q_σ(\tilde{x})=E_{x∼q(x∣\tilde{x})}[∇_\tilde{x} log q_σ(\tilde{x}∣x)] $$
 
@@ -446,8 +446,8 @@ $$∇_\tilde{x} log q_σ(\tilde{x})=E_{x∼q(x∣\tilde{x})}[∇_\tilde{x} log q
 $$
 \begin{align}
 ∇_θL_{hard} &= E_\tilde{x}[−2(∇_\tilde{x}log q_σ(\tilde{x}) − s_θ(\tilde{x}))∇_θs_θ(\tilde{x})] \\\\
-&=E_\tilde{x}[−2(E_{x\sim q(x\|\tilde{x})} [∇_\tilde{x}log q_σ(\tilde{x}\|x)] − s_θ(\tilde{x}))∇_θs_θ(\tilde{x})] \\\\
-&=E_\tilde{x}[−2(∇_\tilde{x}log q_σ(\tilde{x}\|x) − s_θ(\tilde{x}))∇_θs_θ(\tilde{x})] = \nabla_\theta L_{easy} \\\\ 
+&=E_\tilde{x}[−2(E_{x\sim q(x \vert \tilde{x})} [∇_\tilde{x}log q_σ(\tilde{x} \vert x)] − s_θ(\tilde{x}))∇_θs_θ(\tilde{x})] \\\\
+&=E_\tilde{x}[−2(∇_\tilde{x}log q_σ(\tilde{x} \vert x) − s_θ(\tilde{x}))∇_θs_θ(\tilde{x})] = \nabla_\theta L_{easy} \\\\ 
 \end{align}
 $$
 
@@ -456,8 +456,8 @@ $$
 $$
 \begin{align}
 L_\theta &= \frac{1}{2}E_{\tilde{x} \sim q_{\sigma}} \left[ \parallel \nabla_{\tilde{x}}\log q_\sigma(\tilde{x}) - s_\theta(\tilde{x}) \parallel_2^2 \right] \\\\
-&= \frac{1}{2}E_{x\sim P_{data}, \\ \tilde{x} \sim q_{\sigma}(\tilde{x}\|x)} \left[ \parallel \nabla_{\tilde{x}}\log q_\sigma(\tilde{x}\|x) - s_\theta(\tilde{x}) \parallel_2^2 \right] \\\\
-&= \frac{1}{2}E_{x\sim P_{data}, \\ \tilde{x} \sim q_{\sigma}(\tilde{x}\|x)} \left[ \parallel -\frac{\epsilon}{\sigma^2} - s_\theta(\tilde{x}) \parallel_2^2 \right] \\\\
+&= \frac{1}{2}E_{x\sim P_{data}, \\ \tilde{x} \sim q_{\sigma}(\tilde{x} \vert x)} \left[ \parallel \nabla_{\tilde{x}}\log q_\sigma(\tilde{x} \vert x) - s_\theta(\tilde{x}) \parallel_2^2 \right] \\\\
+&= \frac{1}{2}E_{x\sim P_{data}, \\ \tilde{x} \sim q_{\sigma}(\tilde{x} \vert x)} \left[ \parallel -\frac{\epsilon}{\sigma^2} - s_\theta(\tilde{x}) \parallel_2^2 \right] \\\\
 \end{align}
 $$
 
@@ -483,7 +483,7 @@ $$dx = f(x, t)dt + g(t)dw$$
 
 $$
 \begin{align}
-q(x_t\|x_{t−1}) &:= N (x_t;\sqrt{1 − β_t}x_{t−1}, β_tI \;\; \text{(DDPM Transition, Forward)} \\\\
+q(x_t \vert x_{t−1}) &:= N (x_t;\sqrt{1 − β_t}x_{t−1}, β_tI \;\; \text{(DDPM Transition, Forward)} \\\\
 & x_t\text{정의} \\\\
 x_{t} &= \sqrt{1-\beta_t}x_{t-1} + \sqrt{\beta_t}z_t \\\\
 & \sqrt{1-\beta_t} \approx 1- \frac{\beta_t}{2}  \;\; \text{(approximate 사용)} \\\\
@@ -568,12 +568,12 @@ $$\parallel v \parallel_2^2 = x^2 + y^2$$
  
 
 ​
-#### $∇_{\tilde{x}}log(q_σ(\tilde{x}\|x)) \rightarrow -(\tilde{x}-x)/σ²$
+#### $∇_{\tilde{x}}log(q_σ(\tilde{x} \vert x)) \rightarrow -(\tilde{x}-x)/σ²$
 
 * 확률밀도 함수
 $$
 \begin{align}
-q_{\sigma}(\tilde{x}\|x) &= \frac{1}{\sqrt{(2\pi)^D \|\sigma^2 I\|}} \exp\left(-\frac{1}{2}(\tilde{x}-x)^T(\sigma^2 I)^{-1}(\tilde{x}-x)\right) \\\\
+q_{\sigma}(\tilde{x} \vert x) &= \frac{1}{\sqrt{(2\pi)^D  \vert \sigma^2 I \vert }} \exp\left(-\frac{1}{2}(\tilde{x}-x)^T(\sigma^2 I)^{-1}(\tilde{x}-x)\right) \\\\
 \end{align}
 $$
 * Log
@@ -581,7 +581,7 @@ $$
   * $(x̃-x)ᵀ I (x̃-x)$는 벡터 $(x̃-x)$의 내적(dot product)이므로, 제곱 L2 노름 $\parallel \bar{x}-x\parallel^2$와 같습니다.
 $$
 \begin{align}
-\log q_{\sigma}(\tilde{x}\|x) &= \text{상수} - \frac{1}{2}(\tilde{x}-x)^T(\sigma^2 I)^{-1}(\tilde{x}-x) \\\\
+\log q_{\sigma}(\tilde{x} \vert x) &= \text{상수} - \frac{1}{2}(\tilde{x}-x)^T(\sigma^2 I)^{-1}(\tilde{x}-x) \\\\
 &= \text{상수} - \frac{1}{2\sigma^2} \parallel \tilde{x} - x \parallel_2^2 \\\\
 \end{align}
 $$
@@ -590,7 +590,7 @@ $$
   * x̃와 x는 단순히 하나의 숫자가 아니라, 여러 개의 숫자로 이루어진 벡터 $\rightarrow \\ \sum$
 $$
 \begin{align}
-\nabla_{\tilde{x}} \log q_{\sigma}(\tilde{x}\|x) &= \nabla_{\tilde{x}} \left[ \text{상수} - \frac{1}{2\sigma^2} \sum_i (\tilde{x}_i - x_i)^2 \right] \\\\
+\nabla_{\tilde{x}} \log q_{\sigma}(\tilde{x} \vert x) &= \nabla_{\tilde{x}} \left[ \text{상수} - \frac{1}{2\sigma^2} \sum_i (\tilde{x}_i - x_i)^2 \right] \\\\
 &= - \frac{1}{2\sigma^2} \cdot \left[ 2(\tilde{x}_1 - x_1), 2(\tilde{x}_2 - x_2), \dots \right] \\\\
 &= - \frac{1}{\sigma^2} \left[ \tilde{x}_1 - x_1, \tilde{x}_2 - x_2, \dots \right] \\\\
 &= - \frac{\tilde{x} - x}{\sigma^2}
