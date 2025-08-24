@@ -227,10 +227,18 @@ $$q(x_{t-1}\|x_t,x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t,x_0), \tilde{\bet
 
 $$
 \begin{align}
-{\tilde{\mu}}_{t}(x_t,x_0) = \frac{\sqrt_{t-1}} \beta_t}{1-\bar{\alpha}_t}x_0 + \frac {\sqrt{\alpha_t}(1-\bar{\alpha}_{t-1})}{1-{\bar{\alpha}}_t} x_{t} \;\; (7) \\\\
-\tilde{\beta_t}:=\frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t}\beta_t  \;\; (7)
+{\tilde{\mu}}_{t}(x_t,x_0) = \frac{\sqrt_{t-1}}\beta_t}{1-\bar{\alpha}_t}x_0 + \frac {\sqrt{\alpha_t}(1-\bar{\alpha}_{t-1})}{1-{\bar{\alpha}}_t} x_{t} \;\; (7) \\\\
+\tilde{\beta}_t:=\frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t}\beta_t  \;\; (7)
 \end{align}
 $$
+
+$$
+\begin{align}
+\tilde{\mu}_t(x_t, x_0) &= \frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1-\bar{\alpha}_t} x_0 + \frac{\sqrt{\alpha_t}(1-\bar{\alpha}_{t-1})}{1-\bar{\alpha}_t} x_t \\
+\tilde{\beta}_t &:= \frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t} \beta_t
+\end{align}
+$$
+
 
 * $평균 : \tilde{\mu}_t, 분산 : \tilde{\beta}_t$의 가우시안분포를 따른다는 뜻
 
@@ -552,7 +560,7 @@ $$ L \propto \parallel \frac{1}{\sqrt{α_t}} \left(x_t−\frac{β_t}{\sqrt{1−\
 
 $$
 \begin{align}
-L & \propto \left\\| \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon \right) - \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon_\theta \right) \right\\|^2 \\
+L & \propto \left\| \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon \right) - \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\epsilon_\theta \right) \right\|^2 \\
 & = \left\| \frac{\beta_t}{\sqrt{\alpha_t}\sqrt{1-\bar{\alpha}_t}}(\epsilon_\theta - \epsilon) \right\|^2 \\
 & = \frac{\beta_t^2}{\alpha_t(1-\bar{\alpha}_t)} \| \epsilon - \epsilon_\theta \|^2
 \end{align}
@@ -578,13 +586,13 @@ $$
 $$L=E_q[D_{KL}​(q(x_T\|x_0​)\parallel p(x_T))+\displaystyle\sum_{t>1}D_{KL}​(q(x_{t−1}​\|x_t​,x_0)\parallel p_θ(x_{t−1}\|x_t))−\log p_θ(x_0\|x_1)] \\ (5) $$
 $$L_0 = \log p_θ(x_0\|x_1)$$
 
-<img width="1324" height="51" alt="image" src="https://github.com/user-attachments/assets/efb3cb98-11dc-47a0-895e-0881f902bc52" />
+<img width="1000" height="30" alt="image" src="https://github.com/user-attachments/assets/efb3cb98-11dc-47a0-895e-0881f902bc52" />
 
 Channel 당 8bit 으로 mapping {0,1,...,255}
 
 마지막 Losss는 정수가 되어야해서 식 (13)으로 구해야 하는데, 논문에서는 굳이 따로 안써도 된다고 함, t=1대입해서 그냥 구해도 된다.
 
-<img width="1234" height="226" alt="image" src="https://github.com/user-attachments/assets/9740aaec-da70-4f88-a5f7-470022bf42d7" />
+<img width="1000" height="190" alt="image" src="https://github.com/user-attachments/assets/9740aaec-da70-4f88-a5f7-470022bf42d7" />
 
 
 
