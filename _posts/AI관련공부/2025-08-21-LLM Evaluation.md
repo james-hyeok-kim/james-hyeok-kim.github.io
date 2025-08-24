@@ -30,12 +30,12 @@ author: James Kim
 * LMSYS 챗봇 아레나는 LLM Evals를 위한 클라우드소싱 오픈 플랫폼입니다.
 * Bradley-Terry model로 LLM의 순위를 정하고 모델 등급을 Elo-scale로 표시하기 위해 800,000개 이상의 human pairwise 비교를 수집했습니다.
 
-<img width="1512" height="1237" alt="image" src="https://github.com/user-attachments/assets/880e760c-539f-4942-bf66-b75de9c8a5a1" />
+<img width="1512" height="600" alt="image" src="https://github.com/user-attachments/assets/880e760c-539f-4942-bf66-b75de9c8a5a1" />
 
 2-2. MT Bench
 * MT Bench 데이터 셋트에는 80개의 질문에 대한 응답으로 6개 모델이 생성한 응답에 대한 3.3k 전문가 수준의 인간 선호도가 포함되어 있습니다.
 * 6개 모델은 GPT-4, GPT-3.5, Claud-V1, Vicuna-13B, Alpaca-13B 및 LLaMA-13B입니다.
-<img width="1663" height="1613" alt="image" src="https://github.com/user-attachments/assets/7cb24c85-91fa-4d7c-ad85-ae1384be7342" />
+<img width="1663" height="700" alt="image" src="https://github.com/user-attachments/assets/7cb24c85-91fa-4d7c-ad85-ae1384be7342" />
 
 #### 3. Reasoning(추론)
 3.1 ARC Benchmark : Evaluation LLM's Reasoning Abilities 
@@ -56,7 +56,7 @@ author: James Kim
 * 모델의 멀티태스킹 정확도를 측정하는 테스트이며, 초등 수학, 미국 역사, 컴퓨터 과학, 법학 등을 포함한 57개 과제를 초등부터 고급 전문가 수준까지 다양한 수준에서 수행합니다.
 * 이 테스트에서 높은 정확도를 얻으려면 모델은 광범위한 세계 지식과 문제 해결 능력을 보유하고 있습니다.
 
-<img width="1224" height="584" alt="image" src="https://github.com/user-attachments/assets/074cbfe1-7f81-4bf7-85f6-65cecb3534a1" />
+<img width="1224" height="484" alt="image" src="https://github.com/user-attachments/assets/074cbfe1-7f81-4bf7-85f6-65cecb3534a1" />
 
 <img width="842" height="332" alt="image" src="https://github.com/user-attachments/assets/f5e64997-2f99-4706-8a27-67df8780afb3" />
 
@@ -82,7 +82,7 @@ author: James Kim
 
 
 ### LLM 기반 시스템 평가
-<img width="1315" height="623" alt="image" src="https://github.com/user-attachments/assets/0ed2ba75-7807-4ad3-a30c-5aa43ebfe8ef" />
+<img width="1315" height="423" alt="image" src="https://github.com/user-attachments/assets/0ed2ba75-7807-4ad3-a30c-5aa43ebfe8ef" />
 
 * LLM 시스템 평가는 시스템에서 제어할 수 있는 구성 요소들을 각각 평가하는 것을 의미합니다.
 * 그림에서 보여지 듯 하나의 모델에 입력 프롬프트 및 프롬프트 템플릿 등을 변경해 가면서 시스템의 성능을 평가하는 것입니다.
