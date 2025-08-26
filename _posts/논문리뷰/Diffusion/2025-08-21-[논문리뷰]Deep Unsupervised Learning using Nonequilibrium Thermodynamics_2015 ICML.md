@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[논문리뷰]Deep Unsupervised Learning using Nonequilibrium Thermodynamics (2015 ICML)"
+title: "[논문리뷰]Deep Unsupervised Learning using Nonequilibrium Thermodynamics_2015 ICML"
 subtitle: Diffusion
 gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
 gh-badge: [star, fork, follow]
