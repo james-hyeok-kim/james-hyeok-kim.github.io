@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Speculative Decoding, Tensor Parallelism"
+title: "Speculative Decoding _ Tensor Parallelism"
 subtitle: AI
 gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
 gh-badge: [star, fork, follow]
