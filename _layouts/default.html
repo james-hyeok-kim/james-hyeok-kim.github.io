@@ -12,10 +12,11 @@ layout: base
       {% endfor %}
     </div>
   {% endif %}
+  <div class="main-content-wrapper">
+    <div class="content-area">
+      {{ content }}
 
-  {{ content }}
-  
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3023641453362192"
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3023641453362192"
      crossorigin="anonymous"></script>
 <!-- display -->
 <ins class="adsbygoogle"
@@ -27,7 +28,21 @@ layout: base
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-  
+    </div>
+
+       <aside class="sidebar-ad">
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-3023641453362192"
+          data-ad-slot="8875213543"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </aside>
+  </div>
+    
   {% if page.after-content %}
     <div class="after-content">
       {% for file in page.after-content %}
