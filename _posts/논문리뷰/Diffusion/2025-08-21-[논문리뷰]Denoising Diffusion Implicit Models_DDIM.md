@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[논문리뷰]Denoising Diffusion Implicit Models(DDIM)"
+title: "[논문리뷰]Denoising Diffusion Implicit Models_DDIM"
 subtitle: DDIM (Diffusion)
 gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
 gh-badge: [star, fork, follow]
