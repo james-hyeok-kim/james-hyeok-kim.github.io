@@ -19,7 +19,7 @@ author: James Kim
 <img src = "https://github.com/user-attachments/assets/cf043125-2639-48c3-82de-eba3d327a9ab" width="40%" height="40%">
 </p>
 
-$$GELU(x) = xP(X \leq x) = x\sigma(x) = x \cdot  \frac{1}{2} \left[ 1+erf(x/\sqrt{2}) \left] $$
+$$GELU(x) = xP(X \leq x) = x\sigma(x) = x \cdot  \frac{1}{2} \left[ 1+erf(x/\sqrt{2}) \right] $$
 $$ or $$
 $$ GELU(x) = 0.5x(1+tanh[\sqrt{2/\pi}(x+0.044715x^3)])$$
 $$or$$
