@@ -303,3 +303,18 @@ plugins:
 
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
+
+tag_archive:
+  type: liquid
+  path: /tags/
+project_archive:
+  type: liquid
+  path: /project/
+quadcopter_archive:
+  type: liquid
+  path: /project/quadcopter/
+blog_archive:
+  type: liquid
+  path: /project/blog/
+
+breadcrumbs: true
