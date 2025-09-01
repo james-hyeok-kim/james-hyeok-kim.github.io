@@ -58,11 +58,11 @@ $$
 clipping 은 범위를 초과하는 값을 범위안에 가지도록함
 
 $$
-\text{clip}(x, \alpha_q, \beta_q) =
+\text{clip}(x, \text{Int}_{\text{Min}}, \text{Int}_{\text{Max}}) =
 \begin{cases}
-\alpha_q & \text{if } x < \alpha_q \\
-x & \text{if } \alpha_q \le x \le \beta_q \\
-\beta_q & \text{if } x > \beta_q
+\text{Int}_{\text{Min}} & \text{if } x < \text{Int}_{\text{Min}} \\
+x & \text{if } \text{Int}_{\text{Min}} \le x \le \text{Int}_{\text{Max}} \\
+\text{Int}_{\text{Max}} & \text{if } x > \text{Int}_{\text{Max}}
 \end{cases}
 $$
 ​
