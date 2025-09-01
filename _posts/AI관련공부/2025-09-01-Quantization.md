@@ -1,0 +1,70 @@
+# Quantization
+
+<img width="3342" height="973" alt="image" src="https://github.com/user-attachments/assets/fb7d474d-d9ef-4e63-84b1-bad9fb25149e" />
+
+위 그림의 왼쪽이 FP32일 때의 숫자이고 오른쪽은 formula를 통해 변환한 INT8에 해당하는 값입니다. 
+
+실제로는 FP32과 INT8의 숫자는 딥러닝 모델의 weight에 해당함.
+
+위 도표를 통해서 아래 식 (1), (2), (4)을 통해 정의한 Formula를 연산이 가능함.
+
+$$
+f_q(x,s,z)=Clip(round(\frac{x}{s})+z) \quad (1)
+$$
+
+* $fq(x,s,z)$: quantized value
+* clip(): clip the values in a range (ex. 0 - 255)
+* x: real value (float32)
+* s: scale, 기존 실수값 범위 / 양자화 할 정수값 범위
+* z: zero-point integer
+
+$$
+s=\frac{FP_{Max} − FP_{Min}}{Int_{Max}−Int_{Min}} \quad (2)
+$$
+
+
+위 표에서 최댓값은 4.67 이고 최솟값은 -4.75
+
+FP32를 INT8(Unsigned) 로 변경한다고 가정하면, α 
+
+$$
+​Int_{Min}=0, \quad Int_{Max}=255
+$$
+
+$$
+S = \frac{4.67−(−4.75)}{255−0} = \frac{9.42}{255}  =0.037 \quad (3)
+$$
+
+
+* Zero Point 식 정리
+
+$$
+z=round \left(\frac{FP_{Max} * Int_{Min} - Fp_{Min} * Int_{Max}}{FP_{Max} - FP_{Min}} \right)
+$$
+
+위 값을 이용하여 z를 구하면,
+
+$$
+z=round \left(\frac{4.67∗0−(−4.75)∗255}{4.67−(−4.75)} \right)=129
+$$
+
+구한 s,z 를 이용해 x=−3.57 을 식(1)을 통해 양자화를 진행하면 아래와 같다
+
+$$
+q=round \left(\frac{x}{s} \right)+z=round \left(\frac{−3.57}{0.037} \right)+129=33
+$$
+
+
+clipping 은 범위를 초과하는 값을 범위안에 가지도록함
+
+$$
+\text{clip}(x, \alpha_q, \beta_q) =
+\begin{cases}
+\alpha_q & \text{if } x < \alpha_q \\
+x & \text{if } \alpha_q \le x \le \beta_q \\
+\beta_q & \text{if } x > \beta_q
+\end{cases}
+$$
+​
+
+이와 같은 quantization 기법을 uniform quantization이라고 부르며, 결과로 얻어지는 quantized values는 균등하게 분포된다.
