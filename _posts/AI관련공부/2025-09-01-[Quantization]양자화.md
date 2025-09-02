@@ -10,11 +10,18 @@ mathjax: true
 author: James Kim
 ---
 
+[Reference](https://junstar92.tistory.com/519)
+
 # Quantization
 
 <p align="center">
 <img width="1500" height="450" alt="image" src="https://github.com/user-attachments/assets/fb7d474d-d9ef-4e63-84b1-bad9fb25149e" />
 </p>
+
+<p align="center">
+<img width="820" height="432" alt="image" src="https://github.com/user-attachments/assets/37031fd4-aef5-4c0e-9ae2-299917682a1a" />
+</p>
+
 
 위 그림의 왼쪽이 FP32일 때의 숫자이고 오른쪽은 formula를 통해 변환한 INT8에 해당하는 값입니다. 
 
@@ -82,3 +89,32 @@ $$
 ​
 
 이와 같은 quantization 기법을 uniform quantization이라고 부르며, 결과로 얻어지는 quantized values는 균등하게 분포된다.
+
+## Quantizatin 종류
+
+### Uniform vs Non-uniform
+<p align="center">
+<img width="803" height="365" alt="image" src="https://github.com/user-attachments/assets/c127fe8a-7dfd-4618-8344-72587f0be4c1" />
+</p>
+
+### Symmetric vs Asymmetric
+<p align="center">
+<img width="1114" height="331" alt="image" src="https://github.com/user-attachments/assets/47cfec7a-b725-4630-a8bb-a231e6274f47" />
+</p>
+
+### Static vs Dynamic
+* Run Time vs Offline
+
+### Quantization Granularity
+<p align="center">
+<img width="1104" height="667" alt="image" src="https://github.com/user-attachments/assets/0cbe13fd-1777-459a-b025-d6076c1f9b22" />
+</p>
+
+* Layerwise Quantization
+* Groupwise Quantization
+* Channelwise Quantization
+* Sub-Channelwise Quantization
+
+
+
+
