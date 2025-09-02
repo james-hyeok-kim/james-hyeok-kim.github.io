@@ -1,6 +1,20 @@
+---
+layout: post
+title: "양자화"
+subtitle: AI 양자화
+gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
+gh-badge: [star, fork, follow]
+tags: [양자화, Quantization]
+comments: true
+mathjax: true
+author: James Kim
+---
+
 # Quantization
 
-<img width="3342" height="973" alt="image" src="https://github.com/user-attachments/assets/fb7d474d-d9ef-4e63-84b1-bad9fb25149e" />
+<p align="center">
+<img width="1500" height="450" alt="image" src="https://github.com/user-attachments/assets/fb7d474d-d9ef-4e63-84b1-bad9fb25149e" />
+</p>
 
 위 그림의 왼쪽이 FP32일 때의 숫자이고 오른쪽은 formula를 통해 변환한 INT8에 해당하는 값입니다. 
 
