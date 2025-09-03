@@ -1,11 +1,11 @@
 
 ---
 layout: post
-title: [논문리뷰]Fast Inference from Transformers via Speculative Decoding
+title: [논문리뷰]Routing Attention
 subtitle: Routing Attention
 gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
 gh-badge: [star, fork, follow]
-tags: [AI, Speculative Decoding, LLM]
+tags: [AI, Routing Attention, LLM]
 comments: true
 mathjax: true
 author: James Kim
