@@ -81,6 +81,7 @@ author: James Kim
 * 논문 관계 시각화 도구
 * Connected Papers
 <img width="737" height="787" alt="image" src="https://github.com/user-attachments/assets/434eb43e-d739-4d96-a1cb-20525ee500ae" />
+
 * ResearchRabbit
 <img width="732" height="781" alt="image" src="https://github.com/user-attachments/assets/f6a5e36d-2883-4295-9e3c-3930f3371a32" />
 
@@ -90,11 +91,12 @@ author: James Kim
 
 ### Windsurf.ai
 * 속도와 편의성 중심의 AI 코드 에디터
-<img width="735" height="772" alt="image" src="https://github.com/user-attachments/assets/cb2db816-f871-4278-a700-5420c7b62900" />
+<img width="736" height="784" alt="image" src="https://github.com/user-attachments/assets/6cd4b5d0-ce1c-44cc-bcbf-ffbf52b7215d" />
 
 ### Cline
 * 개발 워크플로우 자동화, AI개발 에이전트
-<img width="736" height="784" alt="image" src="https://github.com/user-attachments/assets/6cd4b5d0-ce1c-44cc-bcbf-ffbf52b7215d" />
+<img width="762" height="800" alt="image" src="https://github.com/user-attachments/assets/d5b34bb1-37eb-4e3f-a7b8-957cf8aea9be" />
+
 
 ### Genspark
 * 연구 아이디어를 위한 슈퍼 에이전트
