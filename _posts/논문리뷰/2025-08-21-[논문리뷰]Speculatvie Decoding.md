@@ -1,13 +1,13 @@
 ---
 layout: post
-title: [논문리뷰]Speculatvie Decoding
+title: "[논문리뷰]Speculatvie Decoding"
 subtitle: Routing Attention
 gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
 gh-badge: [star, fork, follow]
 tags: [AI, LLM, Speculative Decoding]
 comments: true
 mathjax: true
-author: James Kim
+author: "James Kim"
 ---
 
 # Speculative Decoding
