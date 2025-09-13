@@ -1,13 +1,13 @@
 ---
 layout: post
-title: [논문리뷰]Routing Attention
+title: "[논문리뷰]Routing Attention"
 subtitle: Routing Attention
 gh-repo: james-hyeok-kim/james-hyeok-kim.github.io.git
 gh-badge: [star, fork, follow]
 tags: [AI, Routing Attention, LLM]
 comments: true
 mathjax: true
-author: James Kim
+author: "James Kim"
 ---
 
 # Routing Attention
